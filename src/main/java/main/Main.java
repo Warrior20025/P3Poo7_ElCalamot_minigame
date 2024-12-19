@@ -15,7 +15,6 @@ public class Main {
             int opcion = ask.askInt("Dime una opción:", "Dime una opción correcta", 1, 7);
             switch (opcion) {
                 case 1:
-                    //todo validar que no haya dos personajes con el mismo nombre
                     String nombre = ask.askString("Dime el nombre del personaje: ");
                     for (Personatge i : personajes) {
                         if (i.getNombre().equalsIgnoreCase(nombre)) {
