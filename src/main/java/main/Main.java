@@ -8,6 +8,8 @@ public class Main {
     private static ArrayList<Personatge> personajes;
 
     public static void main(String[] args) {
+        ask = new AskData();
+        personajes = new ArrayList<>();
         boolean engine = true;
         while (engine) {
             System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
@@ -16,12 +18,16 @@ public class Main {
                 case 1:
                     pedirPersonajeMethod();
                     break;
-                case 2:
-
             }
 
         }
     }
+
+
+
+
+
+
 
     private static void pedirPersonajeMethod() {
         String nombre = ask.askString("Dime el nombre del personaje: ");
