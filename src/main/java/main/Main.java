@@ -18,10 +18,15 @@ public class Main {
                 case 1:
                     pedirPersonajeMethod();
                     break;
+                case 2:
+
             }
 
         }
     }
+
+
+
 
 
 
