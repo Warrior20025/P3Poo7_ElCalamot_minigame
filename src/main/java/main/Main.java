@@ -25,10 +25,6 @@ public class Main {
 
 
 
-
-
-
-
     private static void pedirPersonajeMethod() {
         String nombre = ask.askString("Dime el nombre del personaje: ");
         int nombreRepetido = 0;
