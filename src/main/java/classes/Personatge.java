@@ -8,13 +8,13 @@ public class Personatge {
     private int nivel;
     private double experiencia;
 
-    public Personatge(String nombre, String tipo, double experiencia) {
+    public Personatge(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.fuerza = 50;
         this.vida = 100;
         this.nivel = 0;
-        this.experiencia = experiencia;
+        this.experiencia = 0;
     }
 
     public String getNombre() {
