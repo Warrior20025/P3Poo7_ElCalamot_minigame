@@ -8,10 +8,10 @@ public class Personatge {
     private int nivel;
     private double experiencia;
 
-    public Personatge(String nombre, String tipo, int fuerza, double experiencia) {
+    public Personatge(String nombre, String tipo, double experiencia) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.fuerza = fuerza;
+        this.fuerza = 50;
         this.vida = 100;
         this.nivel = 0;
         this.experiencia = experiencia;
@@ -64,4 +64,5 @@ public class Personatge {
     public void setExperiencia(double experiencia) {
         this.experiencia = experiencia;
     }
+
 }
