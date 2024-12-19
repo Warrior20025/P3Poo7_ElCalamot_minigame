@@ -19,7 +19,7 @@ public class Main {
                     String nombre = ask.askString("Dime el nombre del personaje: ");
                     for (Personatge i : personajes) {
                         if (i.getNombre().equalsIgnoreCase(nombre)) {
-                            
+
                         }
                     }
 
