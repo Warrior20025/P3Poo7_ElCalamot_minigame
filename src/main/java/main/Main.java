@@ -15,7 +15,7 @@ public class Main {
             switch (opcion) {
                 case 1:
                     String nombre = ask.askString("Dime el nombre del personaje: ");
-                    String tipo = ask.askString("Dime el tipo de " + nombre + ": ");
+                    String tipo = ask.askString("Dime que tipo de personaje es " + nombre + ": ");
                     Personatge nuevoPersonage = new Personatge(nombre, tipo);
             }
 
