@@ -24,7 +24,7 @@ public class AskData {
     // Método que recibe un mensaje a mostrar al pedir el dato al usuario
     // devuelve un Strig con la respuesta
     public String askString(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         String answer = "";
         try {
             answer = br.readLine();
