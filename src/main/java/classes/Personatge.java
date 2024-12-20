@@ -4,6 +4,8 @@ public class Personatge {
     private String nombre;
     private String tipo;
     private int fuerza;
+    private int agilidad;
+    private int resistencia;
     private double vida;
     private int nivel;
     private double experiencia;
@@ -12,6 +14,8 @@ public class Personatge {
         this.nombre = nombre;
         this.tipo = tipo;
         this.fuerza = 50;
+        this.agilidad = 50;
+        this.resistencia = 50;
         this.vida = 100;
         this.nivel = 0;
         this.experiencia = 0;
@@ -65,4 +69,19 @@ public class Personatge {
         this.experiencia = experiencia;
     }
 
+    public int getAgilidad() {
+        return agilidad;
+    }
+
+    public void setAgilidad(int agilidad) {
+        this.agilidad = agilidad;
+    }
+
+    public int getResistencia() {
+        return resistencia;
+    }
+
+    public void setResistencia(int resistencia) {
+        this.resistencia = resistencia;
+    }
 }
