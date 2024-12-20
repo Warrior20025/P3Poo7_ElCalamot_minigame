@@ -23,12 +23,42 @@ public class Main {
                     int nombreRepetidoMod = comprobarPersonaje(nombreMod);
                     if (nombreRepetidoMod == 1) {
                         System.out.println("\n\n");
-                        System.out.println("\t\tMODIFICAR PERSONAJE\n");
-
+                        System.out.println("\t\tMODIFICAR PERSONAJE");
+                        int opcionMod;
+                        do {
+                            System.out.println("1. Modificar nombre\n2. Modificar tipo\n3. Salir");
+                            opcionMod = ask.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
+                            switch (opcionMod) {
+                                case 1:
+                                    System.out.println("\n");
+                                    System.out.println("\t\tMODIFICAR NOMBRE");
+                                    String nombreNuevo = ask.askString("Dime el nombre nuevo de tu personaje: ");
+                                    for (Personatge i : personajes) {
+                                        if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                                            i.setNombre(nombreNuevo);
+                                        }
+                                    }
+//                                    for (Personatge i : personajes) {
+//                                        System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
+//                                    }
+                                    break;
+                                case 2:
+                                    System.out.println("\n");
+                                    System.out.println("\t\tMODIFICAR TIPO");
+                                    String tipoNuevo = ask.askString("Dime el tipo que quieres para tu personaje: ");
+                                    for (Personatge i : personajes) {
+                                        if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                                            i.setTipo(tipoNuevo);
+                                        }
+                                    }
+                                    break;
+                            }
+                        }while (opcion != 3);
                     }
                     else {
                         System.out.println("No existe un personaje con este nombre.");
                     }
+                    break;
             }
 
         }
@@ -52,9 +82,9 @@ public class Main {
             Personatge nuevoPersonaje = new Personatge(nombre, tipo);
             personajes.add(nuevoPersonaje);
 
-            for (Personatge i : personajes) {
-                System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
-            }
+//            for (Personatge i : personajes) {
+//                System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
+//            }
 
             System.out.println("Se ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.");
         }else { System.out.println("Ya hay un personaje con ese nombre."); }
