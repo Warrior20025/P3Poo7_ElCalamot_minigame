@@ -52,6 +52,9 @@ public class Main {
                                         }
                                     }
                                     break;
+                                case 3:
+                                    System.out.println("Has salido del menu de modificación.\n");
+                                    break;
                             }
                         }while (opcion != 3);
                     }
