@@ -7,41 +7,8 @@ public class Personatge {
     private int agilidad;
     private int resistencia;
     private int vida;
-    private int experiencia;
     private int nivel;
-
-//    public Personatge( String nombre, String tipo) {
-//        this.nombre = nombre;
-//        this.tipo = tipo;
-//        this.agilidad = 50;
-//        this.experiencia = 0;
-//        this.fuerza = 50;
-//        this.nivel = 0;
-//        this.resistencia = 50;
-//        this.vida = 100;
-//    }
-//
-//    private double vida;
-//    private int nivel;
-//
-//    public int getAgilidad() {
-//        return agilidad;
-//    }
-//
-//    public int getResistencia() {
-//        return resistencia;
-//    }
-//
-//    public void setResistencia(int resistencia) {
-//        this.resistencia = resistencia;
-//    }
-//
-//    public void setAgilidad(int agilidad) {
-//        this.agilidad = agilidad;
-//    }
-//
-//    private double experiencia;
-
+    private int experiencia;
 
     public Personatge(String nombre, String tipo) {
         this.nombre = nombre;
@@ -52,7 +19,6 @@ public class Personatge {
         this.vida = 100;
         this.nivel = 0;
         this.experiencia = 0;
-
     }
 
     public String getNombre() {
@@ -95,7 +61,7 @@ public class Personatge {
         this.nivel = nivel;
     }
 
-    public double getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
