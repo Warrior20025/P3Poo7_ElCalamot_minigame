@@ -29,8 +29,14 @@ public class AskData {
         try {
             answer = br.readLine();
             while (answer.isEmpty()) {
+                System.out.println();
                 System.out.println("No puedes dejar la respuesta en blanco");
+                System.out.println();
+                System.out.print(msg);
                 answer = br.readLine();
+
+
+
             }
         } catch (IOException ex) {
             System.out.println("Ha ocurrido un error inesperado.");
