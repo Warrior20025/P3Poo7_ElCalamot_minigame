@@ -1,6 +1,7 @@
 package main;
 
 import classes.Personatge;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -11,17 +12,53 @@ public class Main {
         ask = new AskData();
         personajes = new ArrayList<>();
         boolean engine = true;
+
+
+//        Personatge personajenuevo = new Personatge("Manuel", "elfo");
+//        personajenuevo.setNivel(12);
+//        personajes.add(personajenuevo);
+//        Personatge personajenuevo1 = new Personatge("Manuel Mengana", "elfo");
+//        personajenuevo1.setNivel(15);
+//        personajes.add(personajenuevo1);
+//        Personatge personajenuevo2 = new Personatge("Manuel Turizo", "elfo");
+//        personajenuevo2.setNivel(20);
+//        personajes.add(personajenuevo2);
+
+
+
+
+
         while (engine) {
             System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
             int opcion = ask.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
             switch (opcion) {
-                case 1:
+                case 1: //crear
                     crearPersonajeMethod();
                     break;
-                case 2:
+                case 2: //modificar
                     modificarPersonaje();
                     break;
-                case 3:
+                case 3: //ranking
+                    if (personajes.isEmpty()) {
+                        System.out.println("No hay personajes creados.");
+                    }
+                    else {
+                        // Ordenar manualmente por nivel de mayor a menor usando bubble sort
+                        for (int i = 0; i < personajes.size() - 1; i++) {
+                            for (int j = 0; j < personajes.size() - 1 - i; j++) {
+                                if (personajes.get(j).getNivel() < personajes.get(j + 1).getNivel()) {
+                                    // Intercambiar elementos
+                                    Personatge temp = personajes.get(j);
+                                    personajes.set(j, personajes.get(j + 1));
+                                    personajes.set(j + 1, temp);
+                                }
+                            }
+                        }
+
+                        System.out.println("Ordenado por nivel (descendente):");
+                        mostrarPersonajes();
+                    }
+
 
             }
 
@@ -69,9 +106,6 @@ public class Main {
                                 i.setNombre(nombreNuevo);
                             }
                         }
-//                                    for (Personatge i : personajes) {
-//                                        System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
-//                                    }
                         break;
                     case 2:
                         System.out.println("\n");
@@ -115,16 +149,28 @@ public class Main {
                 tipo = tipo.toLowerCase();
             }
 
+
+
             Personatge nuevoPersonaje = new Personatge(nombre, tipo);
             personajes.add(nuevoPersonaje);
 
-//            for (Personatge i : personajes) {
-//                System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
-//            }
+            mostrarPersonajes();
 
             System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.\n");
         }else { System.out.println("\nYa hay un personaje con ese nombre.\n"); }
     }
+
+
+
+    private static void mostrarPersonajes() {
+        for (Personatge i : personajes) {
+            System.out.println("\nNombre: " + i.getNombre() + " \nTipo: " + i.getTipo() + " \nFuerza: "
+                    + i.getFuerza() + " \nAgilidad: " + i.getAgilidad() + " \nResistencia: "
+                    + i.getResistencia() + " \nVida: " + i.getVida() + " \nNivel: " + i.getNivel()
+                    + " \nExperiencia: " + i.getExperiencia() + "\n");
+        }
+    }
+
 
     private static int comprobarPersonaje(String nombre) {
         int nombreRepetido = 0;
