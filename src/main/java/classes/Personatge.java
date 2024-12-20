@@ -6,9 +6,9 @@ public class Personatge {
     private int fuerza;
     private int agilidad;
     private int resistencia;
-    private double vida;
+    private int vida;
     private int nivel;
-    private double experiencia;
+    private int experiencia;
 
     public Personatge(String nombre, String tipo) {
         this.nombre = nombre;
@@ -49,7 +49,7 @@ public class Personatge {
         return vida;
     }
 
-    public void setVida(double vida) {
+    public void setVida(int vida) {
         this.vida = vida;
     }
 
@@ -61,11 +61,11 @@ public class Personatge {
         this.nivel = nivel;
     }
 
-    public double getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(double experiencia) {
+    public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
 
