@@ -22,7 +22,7 @@ public class Main {
                     String nombreMod = ask.askString("Dime el nombre del personaje que quieres modificar: ");
                     int nombreRepetidoMod = comprobarPersonaje(nombreMod);
                     if (nombreRepetidoMod == 1) {
-                        System.out.println("\n\n");
+                        System.out.println("\n");
                         System.out.println("\t\tMODIFICAR PERSONAJE");
                         int opcionMod;
                         do {
@@ -45,7 +45,17 @@ public class Main {
                                 case 2:
                                     System.out.println("\n");
                                     System.out.println("\t\tMODIFICAR TIPO");
-                                    String tipoNuevo = ask.askString("Dime el tipo que quieres para tu personaje: ");
+                                    String tipoMostrar = "";
+                                    for (Personatge i : personajes) {
+                                        if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                                            tipoMostrar = i.getTipo();
+                                        }
+                                    }
+                                    String tipoNuevo = "";
+                                    while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
+                                        tipoNuevo = ask.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
+                                        tipoNuevo = tipoNuevo.toLowerCase();
+                                    }
                                     for (Personatge i : personajes) {
                                         if (i.getNombre().equalsIgnoreCase(nombreMod)) {
                                             i.setTipo(tipoNuevo);
@@ -56,7 +66,7 @@ public class Main {
                                     System.out.println("Has salido del menu de modificación.\n");
                                     break;
                             }
-                        }while (opcion != 3);
+                        }while (opcionMod != 3);
                     }
                     else {
                         System.out.println("No existe un personaje con este nombre.");
@@ -89,8 +99,8 @@ public class Main {
 //                System.out.println("nombre: " + i.getNombre() + " tipo: " + i.getTipo());
 //            }
 
-            System.out.println("Se ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.");
-        }else { System.out.println("Ya hay un personaje con ese nombre."); }
+            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.\n");
+        }else { System.out.println("\nYa hay un personaje con ese nombre.\n"); }
     }
 
     private static int comprobarPersonaje(String nombre) {
