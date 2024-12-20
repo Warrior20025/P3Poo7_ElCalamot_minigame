@@ -19,8 +19,16 @@ public class Main {
                     crearPersonajeMethod();
                     break;
                 case 2:
+                    String nombreMod = ask.askString("Dime el nombre del personaje que quieres modificar: ");
+                    int nombreRepetidoMod = comprobarPersonaje(nombreMod);
+                    if (nombreRepetidoMod == 1) {
+                        System.out.println("\n\n");
+                        System.out.println("\t\tMODIFICAR PERSONAJE\n");
 
-
+                    }
+                    else {
+                        System.out.println("No existe un personaje con este nombre.");
+                    }
             }
 
         }
@@ -33,13 +41,8 @@ public class Main {
 
     private static void crearPersonajeMethod() {
         String nombre = ask.askString("Dime el nombre del personaje que quieres crear: ");
-        int nombreRepetido = 0;
-        for (Personatge i : personajes) {
-            if (i.getNombre().equalsIgnoreCase(nombre)) {
-                nombreRepetido ++;
-            }
-        }
-        if (nombreRepetido == 0) {
+        int nombreRepetidoCrear = comprobarPersonaje(nombre);
+        if (nombreRepetidoCrear == 0) {
             String tipo = "";
             while (!tipo.equals("guerrero") && !tipo.equals("mago") && !tipo.equals("elfo") && !tipo.equals("enano")){
                 tipo = ask.askString("Dime que tipo de personaje es " + nombre + " (guerrero, mago, elfo, enano): ");
@@ -55,5 +58,15 @@ public class Main {
 
             System.out.println("Se ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.");
         }else { System.out.println("Ya hay un personaje con ese nombre."); }
+    }
+
+    private static int comprobarPersonaje(String nombre) {
+        int nombreRepetido = 0;
+        for (Personatge i : personajes) {
+            if (i.getNombre().equalsIgnoreCase(nombre)) {
+                nombreRepetido ++;
+            }
+        }
+        return nombreRepetido;
     }
 }
