@@ -88,4 +88,19 @@ public class Personatge {
         this.experiencia = experiencia;
     }
 
+    public int getAgilidad() {
+        return agilidad;
+    }
+
+    public void setAgilidad(int agilidad) {
+        this.agilidad = agilidad;
+    }
+
+    public int getResistencia() {
+        return resistencia;
+    }
+
+    public void setResistencia(int resistencia) {
+        this.resistencia = resistencia;
+    }
 }
