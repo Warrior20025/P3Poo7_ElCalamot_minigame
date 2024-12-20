@@ -83,7 +83,7 @@ public class Personatge {
         return vida;
     }
 
-    public void setVida(double vida) {
+    public void setVida(int vida) {
         this.vida = vida;
     }
 
@@ -99,7 +99,7 @@ public class Personatge {
         return experiencia;
     }
 
-    public void setExperiencia(double experiencia) {
+    public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
 

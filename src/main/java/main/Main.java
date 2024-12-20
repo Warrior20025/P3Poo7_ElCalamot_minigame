@@ -46,8 +46,7 @@ public class Main {
                         // Ordenar manualmente por nivel de mayor a menor usando bubble sort
                         for (int i = 0; i < personajes.size() - 1; i++) {
                             for (int j = 0; j < personajes.size() - 1 - i; j++) {
-                                if (personajes.get(j).getNivel() < personajes.get(j + 1).getNivel()) {
-                                    // Intercambiar elementos
+                                if (personajes.get(j).getNivel() < personajes.get(j + 1).getNivel()) {   // Método comparativo de atributos
                                     Personatge temp = personajes.get(j);
                                     personajes.set(j, personajes.get(j + 1));
                                     personajes.set(j + 1, temp);
