@@ -45,7 +45,7 @@ public class Personatge {
         this.fuerza = fuerza;
     }
 
-    public double getVida() {
+    public int getVida() {
         return vida;
     }
 
