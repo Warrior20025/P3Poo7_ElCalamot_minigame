@@ -1,73 +1,50 @@
 package main;
+import classes.CharactersLibrary;
 import classes.Personatge;
 
 import java.util.ArrayList;
 
 public class Main {
-    private static AskData ask;
     private static ArrayList<Personatge> personajes;
 
     public static void main(String[] args) {
-        ask = new AskData();
         personajes = new ArrayList<>();
         boolean engine = true;
-        Personatge personajenuevo = new Personatge("Manuel", "elfo");
-        personajenuevo.setNivel(12);
-        personajenuevo.setFuerza(30);
-        personajenuevo.setAgilidad(120);
-        personajenuevo.setResistencia(200);
-        personajenuevo.setVida(567);
-        personajenuevo.setExperiencia(56);
-        personajes.add(personajenuevo);
-        Personatge personajenuevo1 = new Personatge("Manuel Mengana", "elfo");
-        personajenuevo1.setNivel(15);
-        personajenuevo.setAgilidad(120);
-        personajenuevo.setResistencia(90);
-        personajenuevo.setVida(24);
-        personajenuevo.setExperiencia(80);
-        personajes.add(personajenuevo1);
-        Personatge personajenuevo2 = new Personatge("Manuel Turizo", "elfo");
-        personajenuevo2.setNivel(20);
-        personajenuevo2.setFuerza(120);
-        personajenuevo.setAgilidad(80);
-        personajenuevo.setResistencia(130);
-        personajenuevo.setVida(134);
-        personajenuevo.setExperiencia(234);
-        personajes.add(personajenuevo2);
+        // cuando para las batallas el daño será la fuerza x 0.75 + agilidad x 0.25. Defensa será la resistencia que se restara al ataque del oponente.
+        //en el combate se puede hacer un numero random en cada ataque y si cae en algun parametro que le pongamos acierta o falla el golpe,
+        // dependiendo de la agilidad del oponente. por ejemplo un numero random y si es major al 50% de la agilidad del oponente le da sino falla.
+        personajes.add(new Personatge("Eldelgas", "elfo", 100, 200, 120, 200, 0, 56));
+        personajes.add(new Personatge("Zombier", "guerrero", 150, 100, 200, 200, 5, 567));
+        personajes.add(new Personatge("Sathan", "mago", 10, 120, 100, 200, 1, 124));
+        personajes.add(new Personatge("Gimli", "enano", 200, 50, 190, 200, 0, 20));
+
         while (engine) {
             System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
-            int opcion = ask.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
+            int opcion = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
             System.out.println();
             switch (opcion) {
                 case 1: //crear
-                    crearPersonajeMethod();
+                    createCharacter();
                     break;
                 case 2: //modificar
                     modificarPersonaje();
                     break;
                 case 3: //ranking
                     rankingOrder();
+                    break;
+                case 4:
+                    //dragon batalla prueba
+                    System.out.println(CharactersLibrary.dragon());
+                    break;
+                case 7:
+                    engine = false;
             }
         }
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -87,7 +64,7 @@ public class Main {
                 System.out.println("1.Ordenar por fuerza.\n2.Ordenar por agilidad." +
                         "\n3.Ordenar por resistencia.\n4.Ordenar por vida." +
                         "\n5.Ordenar por experiencia.\n6.Ordenar por nivel.\n7.Salir");
-                opcionRanking = ask.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
+                opcionRanking = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
                 System.out.println();
                 switch (opcionRanking) {
                     case 1:
@@ -118,9 +95,10 @@ public class Main {
             }while (opcionRanking != 7);
         }
     }
+
     private static void displayRankingOrderedBy(int attribute) {
         sortRankingBy(attribute);
-        mostrarPersonajes();
+        displayCharacterStats();
         System.out.println();
     }
 
@@ -168,25 +146,22 @@ public class Main {
         }
     }
 
-
-
     private static void modificarPersonaje() {
-        String nombreMod = ask.askString("Dime el nombre del personaje que quieres modificar: ");
-        int nombreRepetidoMod = comprobarPersonaje(nombreMod);
-        if (nombreRepetidoMod == 1) {
+        String characterName = AskData.askString("Dime el nombre del personaje que quieres modificar: ");
+        if (checkCharacterExists(characterName)) {
             System.out.println("\n");
             System.out.println("\t\tMODIFICAR PERSONAJE");
             int opcionMod;
             do {
                 System.out.println("1. Modificar nombre\n2. Modificar tipo\n3. Salir");
-                opcionMod = ask.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
+                opcionMod = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
                 switch (opcionMod) {
                     case 1:
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR NOMBRE");
-                        String nombreNuevo = ask.askString("Dime el nombre nuevo de tu personaje: ");
+                        String nombreNuevo = AskData.askString("Dime el nombre nuevo de tu personaje: ");
                         for (Personatge i : personajes) {
-                            if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                            if (i.getNombre().equalsIgnoreCase(characterName)) {
                                 i.setNombre(nombreNuevo);
                             }
                         }
@@ -196,17 +171,17 @@ public class Main {
                         System.out.println("\t\tMODIFICAR TIPO");
                         String tipoMostrar = "";
                         for (Personatge i : personajes) {
-                            if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                            if (i.getNombre().equalsIgnoreCase(characterName)) {
                                 tipoMostrar = i.getTipo();
                             }
                         }
                         String tipoNuevo = "";
                         while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
-                            tipoNuevo = ask.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
+                            tipoNuevo = AskData.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
                             tipoNuevo = tipoNuevo.toLowerCase();
                         }
                         for (Personatge i : personajes) {
-                            if (i.getNombre().equalsIgnoreCase(nombreMod)) {
+                            if (i.getNombre().equalsIgnoreCase(characterName)) {
                                 i.setTipo(tipoNuevo);
                             }
                         }
@@ -222,48 +197,37 @@ public class Main {
         }
     }
 
-
-    private static void crearPersonajeMethod() {
-        String nombre = ask.askString("Dime el nombre del personaje que quieres crear: ");
-        int nombreRepetidoCrear = comprobarPersonaje(nombre);
-        if (nombreRepetidoCrear == 0) {
+    private static void createCharacter() {
+        String name = AskData.askString("Dime el nombre del personaje que quieres crear: ");
+        if (!checkCharacterExists(name)) {
             String tipo = "";
-            while (!tipo.equals("guerrero") && !tipo.equals("mago") && !tipo.equals("elfo") && !tipo.equals("enano")){
-                tipo = ask.askString("Dime que tipo de personaje es " + nombre + " (guerrero, mago, elfo, enano): ");
+            while (!tipo.equalsIgnoreCase("guerrero") &&
+                    !tipo.equalsIgnoreCase("mago") &&
+                    !tipo.equalsIgnoreCase("elfo") &&
+                    !tipo.equalsIgnoreCase("enano")){
+                tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo, enano): ");
                 tipo = tipo.toLowerCase();
             }
-
-
-
-            Personatge nuevoPersonaje = new Personatge(nombre, tipo);
+            Personatge nuevoPersonaje = new Personatge(name, tipo);
             personajes.add(nuevoPersonaje);
-
-            mostrarPersonajes();
-
-            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + nombre + " como nombre.\n");
+            displayCharacterStats();
+            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");
         }else { System.out.println("\nYa hay un personaje con ese nombre.\n"); }
     }
 
-
-
-    private static void mostrarPersonajes() {
-        for (Personatge i : personajes) {
-            System.out.println("Nombre: " + i.getNombre() + "  Tipo: " + i.getTipo() + "  Fuerza: "
-                    + i.getFuerza() + "  Agilidad: " + i.getAgilidad() + "  Resistencia: "
-                    + i.getResistencia() + "  Vida: " + i.getVida() + "  Nivel: " + i.getNivel()
-                    + "  Experiencia: " + i.getExperiencia() + "\n");
+    private static void displayCharacterStats() {
+        for (Personatge character : personajes) {
+            character.displayAttributes();
         }
     }
 
-
-    private static int comprobarPersonaje(String nombre) {
-        int nombreRepetido = 0;
+    private static boolean checkCharacterExists(String nombre) {
         for (Personatge i : personajes) {
             if (i.getNombre().equalsIgnoreCase(nombre)) {
-                nombreRepetido ++;
+                return true;
             }
         }
-        return nombreRepetido;
+        return false;
     }
 }
 

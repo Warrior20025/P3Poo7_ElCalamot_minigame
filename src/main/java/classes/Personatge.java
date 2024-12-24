@@ -21,6 +21,17 @@ public class Personatge {
         this.experiencia = 0;
     }
 
+    public Personatge(String nombre, String tipo, int fuerza, int agilidad, int resistencia, int vida, int nivel, int experiencia) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.fuerza = fuerza;
+        this.agilidad = agilidad;
+        this.resistencia = resistencia;
+        this.vida = vida;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -84,4 +95,12 @@ public class Personatge {
     public void setResistencia(int resistencia) {
         this.resistencia = resistencia;
     }
+
+    public void displayAttributes() {
+        System.out.println("Nombre: " + getNombre() + "  Tipo: " + getTipo() + "  Fuerza: "
+            + getFuerza() + "  Agilidad: " + getAgilidad() + "  Resistencia: "
+            + getResistencia() + "  Vida: " + getVida() + "  Nivel: " + getNivel()
+            + "  Experiencia: " + getExperiencia() + "\n");
+    }
+
 }

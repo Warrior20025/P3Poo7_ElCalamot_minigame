@@ -14,16 +14,12 @@ import java.io.InputStreamReader;
 public class AskData {
 
     // atributo para pedir datos al usuario
-    private BufferedReader br;
-
-    public AskData() {
-        br = new BufferedReader(new InputStreamReader(System.in));
-    }
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     // Método para pedir una cadena
     // Método que recibe un mensaje a mostrar al pedir el dato al usuario
     // devuelve un Strig con la respuesta
-    public String askString(String msg) {
+    public static String askString(String msg) {
         System.out.print(msg);
         String answer = "";
         try {
@@ -43,7 +39,7 @@ public class AskData {
 
     // Método que recibe un mensaje a mostrar al pedir el dato al usuario
     // devuelve un número entero introducido por el usuario
-    public int askInt(String msg) {
+    public static int askInt(String msg) {
         int n = 0;
         boolean error = false;
         do {
@@ -67,7 +63,7 @@ public class AskData {
     // recibe mensaje de error al mostrar si el número no cumple mínimo
     // recibe un int como valor mínimo
     // devuelve un entero mayor o igual que el mínimo
-    public int askInt(String msg, String errorMsg, int min) {
+    public static int askInt(String msg, String errorMsg, int min) {
         int n = askInt(msg);
         while (n < min) {
             System.out.println(errorMsg);
@@ -77,7 +73,7 @@ public class AskData {
     }
     
     // Método análogo al anterior pero con min y max
-    public int askInt(String msg, String errorMsg, int min, int max) {
+    public static int askInt(String msg, String errorMsg, int min, int max) {
         int n = askInt(msg);
         while (n < min || n > max) {
             System.out.println(errorMsg);
