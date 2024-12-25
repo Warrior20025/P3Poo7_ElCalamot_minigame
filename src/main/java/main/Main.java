@@ -33,8 +33,21 @@ public class Main {
                     rankingOrder();
                     break;
                 case 4:
-                    //dragon batalla prueba
+                    //Characters library
+                    System.out.println("\t\t\tDRAGON");     //enemy
                     System.out.println(CharactersLibrary.dragon());
+                    System.out.println("\t   DEAD OUTPUT");     //output para cuando se pierde y muere el personaje
+                    System.out.println(CharactersLibrary.dead());
+                    System.out.println("\t\t\tDEMON");      //enemy
+                    System.out.println(CharactersLibrary.demon());
+                    System.out.println("\t\t  ELF");        //player character
+                    System.out.println(CharactersLibrary.elf());
+                    System.out.println("\t\tWARRIOR");      //player character
+                    System.out.println(CharactersLibrary.warrior());
+                    System.out.println("\t\tENANO");        //player character
+                    System.out.println(CharactersLibrary.enano());
+                    System.out.println("\t\tWIZARD");       //player character
+                    System.out.println(CharactersLibrary.wizard());
                     break;
                 case 7:
                     engine = false;
