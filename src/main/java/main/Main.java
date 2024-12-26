@@ -33,7 +33,11 @@ public class Main {
                     rankingOrder();
                     break;
                 case 4:
-                    //Characters library
+                    //Characters library ------ he pensado que solo deberiamos poner a los enemigos
+                    // porque sino mucho lio con esto para nada, ya que en verdad esto es trabajo de mas
+                    // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
+                    // de que cuando se hace daño como he escrito arriba uede fallar a parte de que el daño que pone dependiendo de la resistencia
+                    // del enemigo no le quitara tanta vida
                     System.out.println("\t\t\tDRAGON");     //enemy
                     System.out.println(CharactersLibrary.dragon());
                     System.out.println("\t   DEAD OUTPUT");     //output para cuando se pierde y muere el personaje
