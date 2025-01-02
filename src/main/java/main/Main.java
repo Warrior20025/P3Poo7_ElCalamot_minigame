@@ -33,38 +33,33 @@ public class Main {
                     rankingOrder();
                     break;
                 case 4:
-                    //Characters library ------ he pensado que solo deberiamos poner a los enemigos
-                    // porque sino mucho lio con esto para nada, ya que en verdad esto es trabajo de mas
-                    // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
-                    // de que cuando se hace daño como he escrito arriba puede fallar a parte de que el daño que pone dependiendo de la resistencia
-                    // del enemigo no le quitara tanta vida
-                    System.out.println("\t\t\tDRAGON");     //enemy
-                    System.out.println(CharactersLibrary.dragon());
-                    System.out.println("\t DEAD OUTPUT");   //output para cuando muere el personaje
-                    System.out.println(CharactersLibrary.dead());
-                    System.out.println("\t\t\tDEMON");      //enemy
-                    System.out.println(CharactersLibrary.demon());
-                    System.out.println("\t\t  ELF");        //player character / enemy
-                    System.out.println(CharactersLibrary.elf());
-                    System.out.println("\t\tWARRIOR");      //player character  ---  **este no lo pondria**
-                    System.out.println(CharactersLibrary.warrior());
-                    System.out.println("\t\tENANO");        //player character / enemy
-                    System.out.println(CharactersLibrary.enano());
-                    System.out.println("\t\tWIZARD");       //player character / enemy
-                    System.out.println(CharactersLibrary.wizard());
+
                     break;
                 case 7:
                     engine = false;
             }
         }
-
-
-
-
     }
 
 
-
+//Characters library ------ he pensado que solo deberiamos poner a los enemigos
+    // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
+    // de que cuando se hace daño como he escrito arriba puede fallar a parte de que el daño que pone dependiendo de la resistencia
+    // del enemigo no le quitara tanta vida
+//                    System.out.println("\t\t\tDRAGON");     //enemy
+//                    System.out.println(CharactersLibrary.dragon());
+//                    System.out.println("\t DEAD OUTPUT");   //output para cuando muere el personaje
+//                    System.out.println(CharactersLibrary.dead());
+//                    System.out.println("\t\t\tDEMON");      //enemy
+//                    System.out.println(CharactersLibrary.demon());
+//                    System.out.println("\t\t  ELF");        //player character / enemy
+//                    System.out.println(CharactersLibrary.elf());
+//                    System.out.println("\t\tWARRIOR");      //player character  ---  **este no lo pondria**
+//                    System.out.println(CharactersLibrary.warrior());
+//                    System.out.println("\t\tENANO");        //player character / enemy
+//                    System.out.println(CharactersLibrary.enano());
+//                    System.out.println("\t\tWIZARD");       //player character / enemy
+//                    System.out.println(CharactersLibrary.wizard());
 
 
 
@@ -73,7 +68,7 @@ public class Main {
             System.out.println("No hay personajes creados.");
         }
         else {
-            System.out.println("*ORDENADO DEFAULT*");
+            System.out.println("*ORDENADO POR NIVEL*");
             displayRankingOrderedBy(6);
             int opcionRanking = 0;
             do {
