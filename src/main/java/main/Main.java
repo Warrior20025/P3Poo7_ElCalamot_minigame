@@ -32,7 +32,13 @@ public class Main {
                 case 3: //ranking
                     rankingOrder();
                     break;
-                case 4:
+                case 4: //eliminar personaje
+                    eliminateCharacter();
+                    break;
+                case 5:
+                    betterCharacter();
+                    break;
+                case 6:
 
                     break;
                 case 7:
@@ -61,12 +67,51 @@ public class Main {
 //                    System.out.println("\t\tWIZARD");       //player character / enemy
 //                    System.out.println(CharactersLibrary.wizard());
 
-
+    private static void betterCharacter() {
+        if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.");}
+        else {
+            System.out.println("*PERSONAJE CON MAYOR NIVEL*");
+            displayBetterCharacter(6);
+            int opcionRanking = 0;
+            do {
+                System.out.println("\n\t\tMAS OPCIONES");
+                System.out.println("1.Mayor fuerza.\n2.Mayor agilidad." +
+                        "\n3.Mayor resistencia.\n4.Mas vida." +
+                        "\n5.Mayor cantidad de experiencia.\n6.Mayor nivel.\n7.Salir");
+                opcionRanking = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
+                System.out.println();
+                switch (opcionRanking) {
+                    case 1:
+                        System.out.println("Mayor Fuerza:");
+                        displayBetterCharacter(1);
+                        break;
+                    case 2:
+                        System.out.println("Mayor agilidad:");
+                        displayBetterCharacter(2);
+                        break;
+                    case 3:
+                        System.out.println("Mayor resistencia:");
+                        displayBetterCharacter(3);
+                        break;
+                    case 4:
+                        System.out.println("Mas vida:");
+                        displayBetterCharacter(4);
+                        break;
+                    case 5:
+                        System.out.println("Mayor cantidad de experiencia:");
+                        displayBetterCharacter(5);
+                        break;
+                    case 6:
+                        System.out.println("Mayor nivel:");
+                        displayBetterCharacter(6);
+                        break;
+                }
+            }while (opcionRanking != 7);
+        }
+    }
 
     private static void rankingOrder() {
-        if (personajes.isEmpty()) {
-            System.out.println("No hay personajes creados.");
-        }
+        if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.");}
         else {
             System.out.println("*ORDENADO POR NIVEL*");
             displayRankingOrderedBy(6);
@@ -111,6 +156,12 @@ public class Main {
     private static void displayRankingOrderedBy(int attribute) {
         sortRankingBy(attribute);
         displayCharacterStats();
+        System.out.println();
+    }
+
+    private static void displayBetterCharacter(int attribute) {
+        sortRankingBy(attribute);
+        displayBetterCharacterStats();
         System.out.println();
     }
 
@@ -209,6 +260,14 @@ public class Main {
         }
     }
 
+    private static void eliminateCharacter() {
+        String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
+        if (checkCharacterExists(name)) {
+            personajes.remove(name);
+            System.out.println("Se ha eliminado el personaje de tu colección.\n");
+        }else { System.out.println("\nNo existe ese personaje.\n"); }
+    }
+
     private static void createCharacter() {
         String name = AskData.askString("Dime el nombre del personaje que quieres crear: ");
         if (!checkCharacterExists(name)) {
@@ -230,6 +289,16 @@ public class Main {
     private static void displayCharacterStats() {
         for (Personatge character : personajes) {
             character.displayAttributes();
+        }
+    }
+
+    private static void displayBetterCharacterStats() {
+        int num = 0;
+        for (Personatge character : personajes) {
+            if (num == 0) {
+                character.displayAttributes();
+            }
+            num ++;
         }
     }
 
