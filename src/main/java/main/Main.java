@@ -3,6 +3,7 @@ import classes.CharactersLibrary;
 import classes.Personatge;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
     private static ArrayList<Personatge> personajes;
@@ -35,14 +36,16 @@ public class Main {
                 case 4: //eliminar personaje
                     eliminateCharacter();
                     break;
-                case 5:
+                case 5: //better Character
                     betterCharacter();
                     break;
                 case 6:
-
+                    play();
                     break;
-                case 7:
+                case 7: //salir
                     engine = false;
+                    System.out.println("Gracias por haber utilizado nuestro juego!!!");
+                    break;
             }
         }
     }
@@ -66,6 +69,88 @@ public class Main {
 //                    System.out.println(CharactersLibrary.enano());
 //                    System.out.println("\t\tWIZARD");       //player character / enemy
 //                    System.out.println(CharactersLibrary.wizard());
+
+    private static void play() {
+        if (personajes.isEmpty()) {
+            System.out.println("No tienes ningún personaje creado.");
+        }
+        else {
+            String characterName = AskData.askString("Dime el nombre del personaje con el que quieras jugar: ");
+            if (checkCharacterExists(characterName)) {
+                boolean playMenu = true;
+                int opcionPlayMenu = 0;
+                while (playMenu) {
+                    System.out.println("\t\tMenú de Juego");
+                    System.out.println("1. Misiones (aumenta solo un atributo del personaje)");
+                    System.out.println("2. Batalla (aumenta todos los atributos del personaje y subes el nivel de experiencia en caso de ganar)");
+                    System.out.println("3. Salir");
+                    opcionPlayMenu = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
+                    switch (opcionPlayMenu) {
+                        case 1:
+                            int atributo = AskData.askInt("¿Que atributo desea augmentar? (1. fuerza, 2. agilidad, 3. resistencia): ", "¿Dime una opción correcta?", 1, 3);
+                            Random numRandom = new Random();
+                            int num1 = numRandom.nextInt(20);
+                            int num2 = numRandom.nextInt(10);
+                            int num3 = numRandom.nextInt(30);
+                            switch (atributo) {
+                                case 1:
+                                    int respuesta1 = AskData.askInt("Resuelve esta operación: " + num3 + " * " + num2 + " * " + num1 + " : ");
+                                    if (respuesta1 == num3 * num2 * num1) {
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu fuerza en 5 puntos!!");
+                                        for (Personatge i : personajes) {
+                                            if (i.getNombre().equalsIgnoreCase(characterName)) {
+                                                i.setFuerza(i.getFuerza() + 5);
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                    }
+                                    break;
+                                case 2:
+                                    int respuesta2 = AskData.askInt("Resuelve esta operación: " + num1 + " + " + num3 + " * " + num2 + " : ");
+                                    if (respuesta2 == num1 + num3 * num2) {
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu agilidad en 5 puntos!!");
+                                        for (Personatge i : personajes) {
+                                            if (i.getNombre().equalsIgnoreCase(characterName)) {
+                                                i.setAgilidad(i.getAgilidad() + 5);
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                    }
+                                    break;
+                                case 3:
+                                    int respuesta3 = AskData.askInt("Resuelve esta operación: " + num1 + " * " + num2 + " * " + num3 + " - " + num1 + " : ");
+                                    if (respuesta3 == num1 * num2 * num3 - num1) {
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu resistencia en 5 puntos!!");
+                                        for (Personatge i : personajes) {
+                                            if (i.getNombre().equalsIgnoreCase(characterName)) {
+                                                i.setResistencia(i.getResistencia() + 5);
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                    }
+                                    break;
+                            }
+                            break;
+                        case 2:
+
+                            break;
+                        case 3:
+                            playMenu = false;
+                            break;
+                    }
+                }
+            }
+            else {
+                System.out.println("No existe un personaje con este nombre.");
+            }
+        }
+    }
 
     private static void betterCharacter() {
         if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.");}
@@ -311,6 +396,3 @@ public class Main {
         return false;
     }
 }
-
-
-
