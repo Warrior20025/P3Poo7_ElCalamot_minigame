@@ -21,12 +21,12 @@ public class CharactersLibrary {
     }
     public static String dead() {
         String deadOutput = "";
-        deadOutput = deadOutput.concat("        **DEAD**         ");
+        deadOutput = deadOutput.concat("       **DEAD**         ");
         deadOutput = deadOutput.concat("\n      ~~~~~~~~~~~");
         deadOutput = deadOutput.concat("\n    /             \\ ");
         deadOutput = deadOutput.concat("\n   | )           ( |");
-        deadOutput = deadOutput.concat("\n   \\   /C\\   /C\\   /");
-        deadOutput = deadOutput.concat("\n   /   ~~~    ~~~  \\");
+        deadOutput = deadOutput.concat("\n   \\  /C\\     /C\\  /");
+        deadOutput = deadOutput.concat("\n   /  ~~~     ~~~  \\");
         deadOutput = deadOutput.concat("\n   \\ ___  .^,  ___ /");
         deadOutput = deadOutput.concat("\n    `|  _______  |'");
         deadOutput = deadOutput.concat("\n     |  HHHHHHH  |");

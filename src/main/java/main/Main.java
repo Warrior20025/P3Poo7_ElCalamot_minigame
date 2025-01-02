@@ -11,7 +11,7 @@ public class Main {
         personajes = new ArrayList<>();
         boolean engine = true;
         // cuando para las batallas el daño será la fuerza x 0.75 + agilidad x 0.25. Defensa será la resistencia que se restara al ataque del oponente.
-        //en el combate se puede hacer un numero random en cada ataque y si cae en algun parametro que le pongamos acierta o falla el golpe,
+        // en el combate se puede hacer un numero random en cada ataque y si cae en algun parametro que le pongamos acierta o falla el golpe,
         // dependiendo de la agilidad del oponente. por ejemplo un numero random y si es major al 50% de la agilidad del oponente le da sino falla.
         personajes.add(new Personatge("Eldelgas", "elfo", 100, 200, 120, 200, 0, 56));
         personajes.add(new Personatge("Zombier", "guerrero", 150, 100, 200, 200, 5, 567));
@@ -36,21 +36,21 @@ public class Main {
                     //Characters library ------ he pensado que solo deberiamos poner a los enemigos
                     // porque sino mucho lio con esto para nada, ya que en verdad esto es trabajo de mas
                     // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
-                    // de que cuando se hace daño como he escrito arriba uede fallar a parte de que el daño que pone dependiendo de la resistencia
+                    // de que cuando se hace daño como he escrito arriba puede fallar a parte de que el daño que pone dependiendo de la resistencia
                     // del enemigo no le quitara tanta vida
                     System.out.println("\t\t\tDRAGON");     //enemy
                     System.out.println(CharactersLibrary.dragon());
-                    System.out.println("\t   DEAD OUTPUT");     //output para cuando se pierde y muere el personaje
+                    System.out.println("\t DEAD OUTPUT");   //output para cuando muere el personaje
                     System.out.println(CharactersLibrary.dead());
                     System.out.println("\t\t\tDEMON");      //enemy
                     System.out.println(CharactersLibrary.demon());
-                    System.out.println("\t\t  ELF");        //player character
+                    System.out.println("\t\t  ELF");        //player character / enemy
                     System.out.println(CharactersLibrary.elf());
-                    System.out.println("\t\tWARRIOR");      //player character
+                    System.out.println("\t\tWARRIOR");      //player character  ---  **este no lo pondria**
                     System.out.println(CharactersLibrary.warrior());
-                    System.out.println("\t\tENANO");        //player character
+                    System.out.println("\t\tENANO");        //player character / enemy
                     System.out.println(CharactersLibrary.enano());
-                    System.out.println("\t\tWIZARD");       //player character
+                    System.out.println("\t\tWIZARD");       //player character / enemy
                     System.out.println(CharactersLibrary.wizard());
                     break;
                 case 7:
