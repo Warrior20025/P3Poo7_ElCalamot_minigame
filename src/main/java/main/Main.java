@@ -157,18 +157,32 @@ public class Main {
                             NPCCharacterCopy(nivelJuego); //index 0
                             playerCharacterCopy(characterName); //index 1
                             Random starter = new Random();
-                            int start = starter.nextInt(20);
-                            while (copias.get(0).isAlive() && copias.get(1).isAlive()) {
-                                System.out.println("\t\tJUGANDO");
+                            int start = 8; //starter.nextInt(20);
+                            System.out.println("\t\tJUGANDO");
+                            boolean juego = true;
+                            while (copias.get(0).isAlive() && copias.get(1).isAlive() && juego) {
                                 if (start < 10) {
                                     if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
-
+                                        int opcionAtacar = 10;
+                                        while (opcionAtacar < 0 || opcionAtacar > 1) {
+                                            System.out.println("Te toca atacar, opciones de ataque: \n0.Rendirse\n1.Espadazo sencillo\n");
+                                            opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 1);
+                                        }
+                                        switch (opcionAtacar) {
+                                            case 0:
+                                                System.out.println("SALIENDO DE LA PARTIDA");
+                                                System.out.println(". . .");
+                                                juego = false;
+                                                break;
+                                            case 1:
+                                                //todo hay que implementar los ataques ademas de tener en cuenta que el critico viene de un numero random
+                                                // y que puede que no haga daño debido a la agilidad, añadir contador de ataques ya que
+                                                // cuantos mas ataques se hagan mas experiencia se pueden ganar
+                                        }
                                     }
                                     else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
-
                                     }
                                     else if (copias.get(1).getTipo().equalsIgnoreCase("elfo")) {
-
                                     }
                                     else {
                                         System.out.println("ERROR, REINICA EL JUEGO");
