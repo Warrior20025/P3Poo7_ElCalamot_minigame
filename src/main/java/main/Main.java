@@ -175,9 +175,12 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
+
                                                 //todo hay que implementar los ataques ademas de tener en cuenta que el critico viene de un numero random
                                                 // y que puede que no haga daño debido a la agilidad, añadir contador de ataques ya que
                                                 // cuantos mas ataques se hagan mas experiencia se pueden ganar
+
+                                                // todo hacer metodo de ataque de jugador y hacer otro de ataque de NPC para que quede esto mas limpio
                                         }
                                     }
                                     else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
