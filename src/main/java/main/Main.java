@@ -1,5 +1,4 @@
 package main;
-import classes.CharactersLibrary;
 import classes.Personatge;
 
 import java.util.ArrayList;
@@ -7,17 +6,22 @@ import java.util.Random;
 
 public class Main {
     private static ArrayList<Personatge> personajes;
+    private static ArrayList<Personatge> NPCs;
+    private static ArrayList<Personatge> copias;
 
     public static void main(String[] args) {
         personajes = new ArrayList<>();
+        NPCs = new ArrayList<>();
+        copias = new ArrayList<>();
+
         boolean engine = true;
         // cuando para las batallas el daño será la fuerza x 0.75 + agilidad x 0.25. Defensa será la resistencia que se restara al ataque del oponente.
         // en el combate se puede hacer un numero random en cada ataque y si cae en algun parametro que le pongamos acierta o falla el golpe,
         // dependiendo de la agilidad del oponente. por ejemplo un numero random y si es major al 50% de la agilidad del oponente le da sino falla.
-        personajes.add(new Personatge("Eldelgas", "elfo", 100, 200, 120, 200, 0, 56));
-        personajes.add(new Personatge("Zombier", "guerrero", 150, 100, 200, 200, 5, 567));
-        personajes.add(new Personatge("Sathan", "mago", 10, 120, 100, 200, 1, 124));
-        personajes.add(new Personatge("Gimli", "enano", 200, 50, 190, 200, 0, 20));
+        personajes.add(new Personatge("Eldelgas", "elfo", 100, 200, 120, 200, 0, 56, 100, 100, 100, 0, 5));
+        personajes.add(new Personatge("Zombier", "guerrero", 150, 100, 200, 200, 5, 567, 100, 100, 100, 0, 5));
+        personajes.add(new Personatge("Sathan", "mago", 10, 120, 100, 200, 1, 124, 100, 100, 100, 0, 5));
+        personajes.add(new Personatge("Gimli", "mago", 200, 50, 190, 200, 0, 20, 100, 100, 100, 0, 5));
 
         while (engine) {
             System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
@@ -49,8 +53,6 @@ public class Main {
             }
         }
     }
-
-
 //Characters library ------ he pensado que solo deberiamos poner a los enemigos
     // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
     // de que cuando se hace daño como he escrito arriba puede fallar a parte de que el daño que pone dependiendo de la resistencia
@@ -70,6 +72,17 @@ public class Main {
 //                    System.out.println("\t\tWIZARD");       //player character / enemy
 //                    System.out.println(CharactersLibrary.wizard());
 
+    private static void createNPC() {
+        NPCs.add(new Personatge("Enemigo", "NPC", 50*(NPCs.size()+1), 50*(NPCs.size()+1), 100*(NPCs.size()+1), 75*(NPCs.size()+1), (NPCs.size()+1), 100*(NPCs.size()+1), 0, 0, 0, 50*(NPCs.size()+1), 0));
+    }
+
+    private static void showNPC() {
+        for (Personatge character : NPCs) {
+            character.displayNPCAttributes();
+        }
+        System.out.println();
+    }
+
     private static void play() {
         if (personajes.isEmpty()) {
             System.out.println("No tienes ningún personaje creado.");
@@ -87,6 +100,7 @@ public class Main {
                     opcionPlayMenu = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
                     switch (opcionPlayMenu) {
                         case 1:
+                            System.out.println("HAS ENTRADO EN EL CAMPO DE MISIONES");
                             int atributo = AskData.askInt("¿Que atributo desea augmentar? (1. fuerza, 2. agilidad, 3. resistencia): ", "¿Dime una opción correcta?", 1, 3);
                             Random numRandom = new Random();
                             int num1 = numRandom.nextInt(20);
@@ -96,10 +110,10 @@ public class Main {
                                 case 1:
                                     int respuesta1 = AskData.askInt("Resuelve esta operación: " + num3 + " * " + num2 + " * " + num1 + " : ");
                                     if (respuesta1 == num3 * num2 * num1) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu fuerza en 5 puntos!!\n");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu fuerza en 50 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
-                                                i.setFuerza(i.getFuerza() + 5);
+                                                i.setFuerza(i.getFuerza() + 50);
                                             }
                                         }
                                     }
@@ -110,10 +124,10 @@ public class Main {
                                 case 2:
                                     int respuesta2 = AskData.askInt("Resuelve esta operación: " + num1 + " + " + num3 + " * " + num2 + " : ");
                                     if (respuesta2 == num1 + num3 * num2) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu agilidad en 5 puntos!!\n");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu agilidad en 50 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
-                                                i.setAgilidad(i.getAgilidad() + 5);
+                                                i.setAgilidad(i.getAgilidad() + 50);
                                             }
                                         }
                                     }
@@ -124,10 +138,10 @@ public class Main {
                                 case 3:
                                     int respuesta3 = AskData.askInt("Resuelve esta operación: " + num1 + " * " + num2 + " * " + num3 + " - " + num1 + " : ");
                                     if (respuesta3 == num1 * num2 * num3 - num1) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu resistencia en 5 puntos!!\n");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu resistencia en 50 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
-                                                i.setResistencia(i.getResistencia() + 5);
+                                                i.setResistencia(i.getResistencia() + 50);
                                             }
                                         }
                                     }
@@ -138,7 +152,39 @@ public class Main {
                             }
                             break;
                         case 2:
+                            System.out.println("HAS ENTRADO EN EL CAMPO DE BATALLA");
+                            int nivelJuego = AskData.askInt("¿A qué nivel quieres jugar? (tienes desbloqueados " + (NPCs.size()+1) + " niveles): ", "No tienes ese nivel desbloqueado (no existen los niveles negativos)", 1, NPCs.size()+1);
+                            NPCCharacterCopy(nivelJuego); //index 0
+                            playerCharacterCopy(characterName); //index 1
+                            Random starter = new Random();
+                            int start = starter.nextInt(20);
+                            while (copias.get(0).isAlive() && copias.get(1).isAlive()) {
+                                System.out.println("\t\tJUGANDO");
+                                if (start < 10) {
+                                    if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
 
+                                    }
+                                    else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
+
+                                    }
+                                    else if (copias.get(1).getTipo().equalsIgnoreCase("elfo")) {
+
+                                    }
+                                    else {
+                                        System.out.println("ERROR, REINICA EL JUEGO");
+                                    }
+                                }
+                                else {
+
+                                }
+                            }
+
+
+
+
+                            createNPC();
+                            createNPC();
+                            showNPC();
                             break;
                         case 3:
                             playMenu = false;
@@ -148,6 +194,50 @@ public class Main {
             }
             else {
                 System.out.println("No existe un personaje con este nombre.");
+            }
+        }
+    }
+
+    private static void NPCCharacterCopy(int nivelJuego) {
+        Personatge copiaNPC = new Personatge(null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5);
+        for (Personatge i : personajes) {
+            if (i.getNivel() == nivelJuego) {
+                copiaNPC.setNombre(i.getNombre());
+                copiaNPC.setTipo(i.getTipo());
+                copiaNPC.setFuerza(i.getFuerza());
+                copiaNPC.setAgilidad(i.getAgilidad());
+                copiaNPC.setResistencia(i.getResistencia());
+                copiaNPC.setVida(i.getVida());
+                copiaNPC.setNivel(i.getNivel());
+                copiaNPC.setExperiencia(i.getExperiencia());
+                copiaNPC.setAtaque_guerrero(i.getAtaque_guerrero());
+                copiaNPC.setAtaque_elfo(i.getAtaque_elfo());
+                copiaNPC.setAtaque_mago(i.getAtaque_mago());
+                copiaNPC.setAtaque_NPC(i.getAtaque_NPC());
+                copiaNPC.setPotions(i.getPotions());
+                copias.add(copiaNPC);
+            }
+        }
+    }
+
+    private static void playerCharacterCopy(String characterName) {
+        Personatge copiaJugador = new Personatge(null, null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        for (Personatge i : personajes) {
+            if (i.getNombre().equalsIgnoreCase(characterName)) {
+                copiaJugador.setNombre(i.getNombre());
+                copiaJugador.setTipo(i.getTipo());
+                copiaJugador.setFuerza(i.getFuerza());
+                copiaJugador.setAgilidad(i.getAgilidad());
+                copiaJugador.setResistencia(i.getResistencia());
+                copiaJugador.setVida(i.getVida());
+                copiaJugador.setNivel(i.getNivel());
+                copiaJugador.setExperiencia(i.getExperiencia());
+                copiaJugador.setAtaque_guerrero(i.getAtaque_guerrero());
+                copiaJugador.setAtaque_elfo(i.getAtaque_elfo());
+                copiaJugador.setAtaque_mago(i.getAtaque_mago());
+                copiaJugador.setAtaque_NPC(i.getAtaque_NPC());
+                copiaJugador.setPotions(i.getPotions());
+                copias.add(copiaJugador);
             }
         }
     }
@@ -359,9 +449,8 @@ public class Main {
             String tipo = "";
             while (!tipo.equalsIgnoreCase("guerrero") &&
                     !tipo.equalsIgnoreCase("mago") &&
-                    !tipo.equalsIgnoreCase("elfo") &&
-                    !tipo.equalsIgnoreCase("enano")){
-                tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo, enano): ");
+                    !tipo.equalsIgnoreCase("elfo")){
+                tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo): ");
                 tipo = tipo.toLowerCase();
             }
             Personatge nuevoPersonaje = new Personatge(name, tipo);
