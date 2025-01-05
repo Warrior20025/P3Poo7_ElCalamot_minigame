@@ -96,7 +96,7 @@ public class Main {
                                 case 1:
                                     int respuesta1 = AskData.askInt("Resuelve esta operación: " + num3 + " * " + num2 + " * " + num1 + " : ");
                                     if (respuesta1 == num3 * num2 * num1) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu fuerza en 5 puntos!!");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu fuerza en 5 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
                                                 i.setFuerza(i.getFuerza() + 5);
@@ -104,13 +104,13 @@ public class Main {
                                         }
                                     }
                                     else {
-                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.\n");
                                     }
                                     break;
                                 case 2:
                                     int respuesta2 = AskData.askInt("Resuelve esta operación: " + num1 + " + " + num3 + " * " + num2 + " : ");
                                     if (respuesta2 == num1 + num3 * num2) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu agilidad en 5 puntos!!");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu agilidad en 5 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
                                                 i.setAgilidad(i.getAgilidad() + 5);
@@ -118,13 +118,13 @@ public class Main {
                                         }
                                     }
                                     else {
-                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.\n");
                                     }
                                     break;
                                 case 3:
                                     int respuesta3 = AskData.askInt("Resuelve esta operación: " + num1 + " * " + num2 + " * " + num3 + " - " + num1 + " : ");
                                     if (respuesta3 == num1 * num2 * num3 - num1) {
-                                        System.out.println("Has acertado la operación correctamente, augmentas tu resistencia en 5 puntos!!");
+                                        System.out.println("Has acertado la operación correctamente, augmentas tu resistencia en 5 puntos!!\n");
                                         for (Personatge i : personajes) {
                                             if (i.getNombre().equalsIgnoreCase(characterName)) {
                                                 i.setResistencia(i.getResistencia() + 5);
@@ -132,7 +132,7 @@ public class Main {
                                         }
                                     }
                                     else {
-                                        System.out.println("Incorrecto, intentalo en otra ocasión.");
+                                        System.out.println("Incorrecto, intentalo en otra ocasión.\n");
                                     }
                                     break;
                             }
