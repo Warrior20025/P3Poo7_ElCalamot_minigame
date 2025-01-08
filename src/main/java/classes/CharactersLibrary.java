@@ -1,6 +1,31 @@
 package classes;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.Random;
+
 public class CharactersLibrary {
+
+    public static String displayLibary() {
+        Random randomNumber = new Random();
+        int random = randomNumber.nextInt(4);
+        switch (random) {
+            case 1:
+                System.out.println(dragon());
+                break;
+            case 2:
+                System.out.println(evilElf());
+                break;
+            case 3:
+                System.out.println(demon());
+                break;
+            case 4:
+                System.out.println(evilWizard());
+                break;
+        }
+        return null;
+    }
+
     public static String dragon() {
         String dragonCharacter = "";
         dragonCharacter = dragonCharacter.concat("                   _______________");
@@ -34,7 +59,7 @@ public class CharactersLibrary {
         deadOutput = deadOutput.concat("\n       ~~~~^~~~~" + "\n");
         return deadOutput;
     }
-    public static String elf() {
+    public static String evilElf() {
         String elfCharacter = "";
         elfCharacter = elfCharacter.concat("\n" +
                 "       `_-@@@-_\n" +
@@ -78,67 +103,8 @@ public class CharactersLibrary {
                 "\n");
         return demonCharacter;
     }
-    public static String warrior() {
-        String warriorCharacter = "";
-        warriorCharacter = warriorCharacter.concat("\n" +
-                "      __\n" +
-                "    .'_|\\     _.--._\n" +
-                "   |_| ` \\---/     ``.\n" +
-                "   | ` .'   .--._____`\\\n" +
-                "    \\ /    /#\"__ _<  \\/\n" +
-                "     |    |#'/  \\| \\\n" +
-                "     |__  |# | '@|'@\n" +
-                "    ,'-.`.|\"  \\_/|_/\n" +
-                "    |   ` \\\\  __<.`)__\n" +
-                "     `.__,|\\\\ \\ `-_` /\n" +
-                "        ) '  \\ \\(  `'\n" +
-                "      _/  ,,  \\ \\_--\n" +
-                "     / \\\\/  ``\\\\_/   `-._____\n" +
-                "     |  \\\\    _________<____))\n" +
-                "    /|   \\\\--'  _____----.`-'\n" +
-                "   / (    <----'  .-<_==='\n" +
-                "  |   \\          /\n" +
-                "  |____\\        /\n" +
-                "    |   \\      /\n" +
-                "    |    \\   _/`\n" +
-                "    '|    `\\_(`\\\n" +
-                "    '\\    \\    )\n" +
-                "     |    )   /\n" +
-                "     |   /|  /\n" +
-                "     |  / (-<_______\n" +
-                "    _/--`-------____\\\n" +
-                "    `---._  ==='\n" +
-                "         `--'\n" +
-                "\n");
-        return warriorCharacter;
-    }
-    public static String enano() {
-        String enanoCharacter = "";
-        enanoCharacter = enanoCharacter.concat("\n" +
-                "                ____\n" +
-                "    ___- -__.--'    `.   .\n" +
-                "    \\  `--' .---.     \\ /|\n" +
-                "     )   `       \\     //|\n" +
-                "     | __    __   |   '/||\n" +
-                "     |/  \\  /  \\      / ||\n" +
-                "     ||  |  |   \\     \\  |\n" +
-                "     \\|  |  |   /        |\n" +
-                "    __\\\\@/  |@ | ___ \\--'\n" +
-                "   (     /' `--'  __)|\n" +
-                "  __>   (  .  .--' &\"\\\n" +
-                " /   `--|_/--'     &  |\n" +
-                " |                 #. |\n" +
-                " |                 q# |\n" +
-                "  \\              ,ad#'\n" +
-                "   `.________.ad####'\n" +
-                "     `#####\"\"\"\"\"\"''\n" +
-                "      `\"\n" +
-                "        \"&\n" +
-                "       \"#ba\"\n" +
-                "\n");
-        return enanoCharacter;
-    }
-    public static String wizard() {
+
+    public static String evilWizard() {
         String wizardCharacter = "";
         wizardCharacter = wizardCharacter.concat("\n" +
                 "              _,._      \n" +
