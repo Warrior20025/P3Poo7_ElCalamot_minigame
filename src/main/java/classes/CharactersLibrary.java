@@ -8,7 +8,7 @@ public class CharactersLibrary {
 
     public static String displayLibary() {
         Random randomNumber = new Random();
-        int random = randomNumber.nextInt(4);
+        int random = randomNumber.nextInt(1, 5);
         switch (random) {
             case 1:
                 System.out.println(dragon());

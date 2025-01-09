@@ -38,8 +38,8 @@ public class Personatge {
         this.agilidad = 50;
         this.resistencia = 50;
         this.vida = 100;
-        this.nivel = 0;
-        this.experiencia = 0;
+        this.nivel = 1;
+        this.experiencia = 1000;
         this.ataque_guerrero = 100;
         this.ataque_mago = 100;
         this.ataque_elfo = 100;
@@ -66,8 +66,8 @@ public class Personatge {
     //TIPOS ATAQUES
     public void ataque_guerrero(Personatge enemigo) {
         if (getAtaque_guerrero() > enemigo.getResistencia()) {
-            enemigo.recibirDaño(getAtaque_guerrero());
             System.out.println(nombre + " atacó con un espadazo a " + enemigo.getNombre() + " causando " + (getAtaque_guerrero() - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(getAtaque_guerrero());
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -76,8 +76,8 @@ public class Personatge {
 
     public void ataque_mago(Personatge enemigo) {
         if (getAtaque_mago() > enemigo.getResistencia()) {
-            enemigo.recibirDaño(getAtaque_mago());
             System.out.println(nombre + " lanzó un hechizo a " + enemigo.getNombre() + " causando " + (getAtaque_mago() - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(getAtaque_mago());
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -86,8 +86,8 @@ public class Personatge {
 
     public void ataque_elfo(Personatge enemigo) {
         if (getAtaque_elfo() > enemigo.getResistencia()) {
-            enemigo.recibirDaño(getAtaque_elfo());
             System.out.println(nombre + " lanzó una flecha a " + enemigo.getNombre() + " causando " + (getAtaque_elfo() - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(getAtaque_elfo());
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -97,8 +97,8 @@ public class Personatge {
     public void ataque_NPC(Personatge player) {
         System.out.println("Te ataca el enemigo!");
         if (getAtaque_NPC() > player.getResistencia()) {
-            player.recibirDaño(getAtaque_NPC());
             System.out.println(nombre + " atacó a " + player.getNombre() + " causando " + (getAtaque_NPC() - player.getResistencia()) + " de daño.");
+            player.recibirDaño(getAtaque_NPC());
         }
         else {
             System.out.println(nombre + " atacó a " + player.getNombre() + " causando 0 de daño. Tu resistencia es mas alta que el daño que hace el enemigo.");
@@ -109,8 +109,8 @@ public class Personatge {
         System.out.println("Has dado golpe crítico!!");
         int dañoFuerte = getAtaque_guerrero() * 2;
         if (dañoFuerte > enemigo.getResistencia()) {
-            enemigo.recibirDaño(dañoFuerte);
             System.out.println(nombre + " ha dado un espadazo crítico " + enemigo.getNombre() + " causando " + (dañoFuerte - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(dañoFuerte);
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -122,8 +122,8 @@ public class Personatge {
         System.out.println("Has dado golpe crítico!!");
         int dañoFuerte = getAtaque_mago() * 2;
         if (dañoFuerte > enemigo.getResistencia()) {
-            enemigo.recibirDaño(dañoFuerte);
             System.out.println(nombre + " ha dado un golpe crítico con este hechizo " + enemigo.getNombre() + " causando " + (dañoFuerte - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(dañoFuerte);
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -134,8 +134,8 @@ public class Personatge {
         System.out.println("Has dado golpe crítico!!");
         int dañoFuerte = getAtaque_elfo() * 2;
         if (dañoFuerte > enemigo.getResistencia()) {
-            enemigo.recibirDaño(dañoFuerte);
             System.out.println(nombre + " ha dado con la flecha en la cabeza a " + enemigo.getNombre() + " causando un golpe crítico de " + (dañoFuerte - enemigo.getResistencia()) + " de daño.");
+            enemigo.recibirDaño(dañoFuerte);
         }
         else {
             System.out.println(nombre + " atacó a " + enemigo.getNombre() + " causando 0 de daño. Resistencia del enemigo muy alta.");
@@ -192,7 +192,9 @@ public class Personatge {
     public void recibirDaño(int daño) {
         if (getResistencia() < daño) {
             this.vida -= daño - getResistencia();
-            System.out.println(nombre + " recibió " + daño + " de daño. Vida restante: " + vida);
+            if (vida < 0) {vida = 0;}
+            System.out.println(nombre + " recibió " + (daño - getResistencia()) + " de daño. Vida restante: " + vida);
+
         }
         else {
             System.out.println(nombre + " no recibió daño. Vida restante: " + vida);

@@ -48,6 +48,8 @@ public class Main {
                         System.out.print("!");
                         Thread.sleep(500);
                         System.out.print("!");
+                        Thread.sleep(500);
+                        System.out.print("!");
                     } catch (InterruptedException e) {
                         System.out.println("");
                     }
@@ -88,6 +90,7 @@ public class Main {
     private static void ataquesJuego(int numAtaque) {
         Random critico = new Random();
         int numcrit = critico.nextInt(10);
+        System.out.println(numcrit);
         switch (numAtaque) {
             case 1:
                 if (numcrit < 4) {
@@ -113,6 +116,7 @@ public class Main {
                     copias.get(1).ataque_elfo(copias.get(0));
                 }
         }
+        copias.get(0).displayNPCAttributes();
     }
 
     private static void play() {
@@ -194,8 +198,8 @@ public class Main {
                             System.out.println("\t\tJUGANDO");
                             boolean juego = true;
                             CharactersLibrary displayCharacter = new CharactersLibrary();
-                            String displayEnemy = displayCharacter.displayLibary();
-                            String deadDisplay = displayCharacter.dead();
+                            String displayEnemy = displayCharacter.displayLibary();     //printea enemigo
+                            String deadDisplay = displayCharacter.dead();   //crea variable de dead output
                             while (copias.get(0).isAlive() && copias.get(1).isAlive() && juego) {
                                 if (start < 10) {
                                     if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
@@ -211,11 +215,9 @@ public class Main {
                                                 break;
                                             case 1:
                                                 ataquesJuego(1);
-                                                enemyAtack();
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
-                                                enemyAtack();
                                                 break;
                                         }
                                     }
@@ -232,11 +234,9 @@ public class Main {
                                                 break;
                                             case 1:
                                                 ataquesJuego(2);
-                                                enemyAtack();
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
-                                                enemyAtack();
                                                 break;
                                         }
 
@@ -254,19 +254,19 @@ public class Main {
                                                 break;
                                             case 1:
                                                 ataquesJuego(3);
-                                                enemyAtack();
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
-                                                enemyAtack();
                                                 break;
                                         }
                                     }
                                     else {
                                         System.out.println("ERROR, REINICA EL JUEGO");
                                     }
+                                    enemyAtack();
                                 }
                                 else {
+                                    enemyAtack();
                                     if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
                                         int opcionAtacar = 10;
                                         while (opcionAtacar < 0 || opcionAtacar > 2) {
@@ -279,11 +279,9 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                enemyAtack();
                                                 ataquesJuego(1);
                                                 break;
                                             case 2:
-                                                enemyAtack();
                                                 copias.get(1).usarPocion();
                                                 break;
                                         }
@@ -301,11 +299,9 @@ public class Main {
                                                 break;
                                             case 1:
                                                 ataquesJuego(2);
-                                                enemyAtack();
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
-                                                enemyAtack();
                                                 break;
                                         }
 
@@ -323,11 +319,9 @@ public class Main {
                                                 break;
                                             case 1:
                                                 ataquesJuego(3);
-                                                enemyAtack();
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
-                                                enemyAtack();
                                                 break;
                                         }
                                     }
@@ -335,7 +329,7 @@ public class Main {
                             }
                             if (!copias.get(1).isAlive()) {
                                 System.out.println("**HAS SIDO DERROTADO**");
-                                System.out.println(deadDisplay);
+                                System.out.println(deadDisplay);    //muestra dead output
                             }
                             else if (!copias.get(0).isAlive()){
                                 if (copias.get(0).getNivel() == NPCs.size() || copias.get(1).getNivel() < copias.get(0).getNivel()) {
@@ -407,6 +401,7 @@ public class Main {
     private static void enemyAtack() {
         System.out.println("El enemigo te lanza un ataque -->");
         copias.get(0).ataque_NPC(copias.get(1));
+        System.out.println("\nEstadisticas restantes de " + copias.get(1).getNombre() + ":");
         copias.get(1).displayAttributes();
     }
 
@@ -567,16 +562,12 @@ public class Main {
                         value2 = personajes.get(j + 1).getVida();
                         break;
                     case 5:
-                        value1 = personajes.get(j).getNivel();
-                        value2 = personajes.get(j + 1).getNivel();
+                        value1 = personajes.get(j).getExperiencia();
+                        value2 = personajes.get(j + 1).getExperiencia();
                         break;
                     case 6:
                         value1 = personajes.get(j).getNivel();
                         value2 = personajes.get(j + 1).getNivel();
-                        break;
-                    default:
-                        value1 = personajes.get(j).getExperiencia();
-                        value2 = personajes.get(j + 1).getExperiencia();
                         break;
                 }
                 if (value1 < value2) {      // Metodo comparativo de atributos
