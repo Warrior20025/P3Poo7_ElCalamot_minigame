@@ -58,18 +58,18 @@ public class Main {
         }
     }
 
-    private static void createNPC() {
+    private static void createNPC() {   //funcion de crear NPC
         NPCs.add(new Personatge("Enemigo", "NPC", 50*(NPCs.size()+1), 50*(NPCs.size()+1), 50*(NPCs.size()+1), 75*(NPCs.size()+1), 1*(NPCs.size()+1), 1000*(NPCs.size()+1), 0, 0, 0, 50*(NPCs.size()+1), 0));
     }
 
-    private static void showNPC() {
+    private static void showNPC() {     //display stats NPC
         for (Personatge character : NPCs) {
             character.displayNPCAttributes();
         }
         System.out.println();
     }
 
-    private static void ataquesJuego(int numAtaque) {
+    private static void ataquesJuego(int numAtaque) {   //funcion de ataques para diferenciar ataque normal del crítico con un random  y dependiendo del tipo de jugador
         Random critico = new Random();
         int numcrit = critico.nextInt(10);
         System.out.println(numcrit);
@@ -101,23 +101,23 @@ public class Main {
         copias.get(0).displayNPCAttributes();
     }
 
-    private static void play() {
+    private static void play() {        //juego
         if (personajes.isEmpty()) {
             System.out.println("No tienes ningún personaje creado.");
         }
         else {
-            String characterName = AskData.askString("Dime el nombre del personaje con el que quieras jugar: ");
+            String characterName = AskData.askString("Dime el nombre del personaje con el que quieras jugar: ");    //pedimos personaje con el que jugar
             if (checkCharacterExists(characterName)) {
                 boolean playMenu = true;
                 int opcionPlayMenu = 0;
-                while (playMenu) {
+                while (playMenu) {      //menú de juego
                     System.out.println("\t\tMenú de Juego");
                     System.out.println("1. Misiones (aumenta solo un atributo del personaje)");
                     System.out.println("2. Batalla (aumenta todos los atributos del personaje y subes el nivel de experiencia en caso de ganar)");
                     System.out.println("3. Volver al menú de inicio");
                     opcionPlayMenu = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 3);
                     switch (opcionPlayMenu) {
-                        case 1:
+                        case 1:     //caso de misiones
                             System.out.println("HAS ENTRADO EN EL CAMPO DE MISIONES");
                             int atributo = AskData.askInt("¿Que atributo desea augmentar? (1. fuerza, 2. agilidad, 3. resistencia): ", "¿Dime una opción correcta?", 1, 3);
                             Random numRandom = new Random();
@@ -169,20 +169,20 @@ public class Main {
                                     break;
                             }
                             break;
-                        case 2:
+                        case 2:     //caso de batallas
                             System.out.println("HAS ENTRADO EN EL CAMPO DE BATALLA");
                             int nivelJuego = AskData.askInt("¿A qué nivel quieres jugar? (tienes desbloqueados " + NPCs.size() + " niveles): ", "No tienes ese nivel desbloqueado (no existen los niveles negativos)", 1, NPCs.size());
-                            NPCCharacterCopy(nivelJuego); //index 0
-                            playerCharacterCopy(characterName); //index 1
+                            NPCCharacterCopy(nivelJuego); //copia de NPC en el index 0
+                            playerCharacterCopy(characterName); //copia de jugador en el index 1
                             Random starter = new Random();
-                            int start = starter.nextInt(20);
+                            int start = starter.nextInt(20);    //usamos el random para decidir quien empieza atacando en la batalla
                             System.out.println("\t\tJUGANDO");
                             boolean juego = true;
                             CharactersLibrary displayCharacter = new CharactersLibrary();
                             String displayEnemy = displayCharacter.displayLibary();     //printea enemigo
                             String deadDisplay = displayCharacter.dead();   //crea variable de dead output
                             while (copias.get(0).isAlive() && copias.get(1).isAlive() && juego) {
-                                if (start < 10) {
+                                if (start < 10) {       //empieza atacando el jugador con casos dependiendo del tipo
                                     if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
                                         int opcionAtacar = 10;
                                         while (opcionAtacar < 0 || opcionAtacar > 2) {
@@ -246,7 +246,7 @@ public class Main {
                                     }
                                     enemyAtack();
                                 }
-                                else {
+                                else {      //empieza atacando el NPC y el jugador tiene casos dependiendo del tipo
                                     enemyAtack();
                                     if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
                                         int opcionAtacar = 10;
@@ -308,18 +308,18 @@ public class Main {
                                     }
                                 }
                             }
-                            if (!copias.get(1).isAlive()) {
+                            if (!copias.get(1).isAlive()) {     //display de cuando muere el jugador
                                 System.out.println("**HAS SIDO DERROTADO**");
                                 System.out.println(deadDisplay);    //muestra dead output
                             }
-                            else if (!copias.get(0).isAlive()){
+                            else if (!copias.get(0).isAlive()){     //display de cuando se derrota al NPC
                                 if (copias.get(0).getNivel() == NPCs.size() || copias.get(1).getNivel() <= copias.get(0).getNivel()) {
                                     System.out.println("**HAS DERROTADO AL ENEMIGO**\n");
                                     if (copias.get(0).getNivel() == NPCs.size()) {
                                         createNPC();
                                         System.out.println("Has desbloqueado el nivel " + NPCs.size() + "\n");
                                     }
-                                    if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
+                                    if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {     //ifs de subir nivel dependiendo del tipo
                                         ImproveCharacterStats(characterName, 1);
                                     }
                                     else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
@@ -329,7 +329,7 @@ public class Main {
                                         ImproveCharacterStats(characterName, 3);
                                     }
                                 }
-                                else {
+                                else {      //para cuando ya habias desbloqueado el nivel
                                     System.out.println("**HAS DERROTADO AL ENEMIGO**\n");
                                     ImproveCharacterStats(characterName, 4);
                                 }
@@ -338,7 +338,7 @@ public class Main {
                             copias.remove(0);
                             copias.remove(0);
                             break;
-                        case 3:
+                        case 3:     //salir del menu de juego
                             playMenu = false;
                             break;
                     }
@@ -350,7 +350,7 @@ public class Main {
         }
     }
 
-    private static void ImproveCharacterStats(String characterName, int num) {
+    private static void ImproveCharacterStats(String characterName, int num) {      //funcion que muestra que se han augmentado las caractgeristicas de un jugador dependiendo del tipo o si ya tenia el nivel pasado
         for (Personatge i : personajes) {
             if (i.getNombre().equalsIgnoreCase(characterName)) {
                 switch (num) {
@@ -379,14 +379,14 @@ public class Main {
         }
     }
 
-    private static void enemyAtack() {
+    private static void enemyAtack() {      //display del ataque de un enemigo
         System.out.println("El enemigo te lanza un ataque -->");
         copias.get(0).ataque_NPC(copias.get(1));
         System.out.println("\nEstadisticas restantes de " + copias.get(1).getNombre() + ":");
         copias.get(1).displayAttributes();
     }
 
-    private static void NPCCharacterCopy(int nivelJuego) {
+    private static void NPCCharacterCopy(int nivelJuego) {      //esta funcion hace una copia del NPC con el nivel que pasemos
         Personatge copiaNPC = new Personatge();
         for (Personatge i : NPCs) {
             if (i.getNivel() == nivelJuego && i.getNombre().equalsIgnoreCase("enemigo")) {
@@ -396,36 +396,31 @@ public class Main {
         }
     }
 
-    private static void copyStats(Personatge i, Personatge copiaNPC) {
-        copiaNPC.setNombre(i.getNombre());
-        copiaNPC.setTipo(i.getTipo());
-        copiaNPC.setFuerza(i.getFuerza());
-        copiaNPC.setAgilidad(i.getAgilidad());
-        copiaNPC.setResistencia(i.getResistencia());
-        copiaNPC.setVida(i.getVida());
-        copiaNPC.setNivel(i.getNivel());
-        copiaNPC.setExperiencia(i.getExperiencia());
-        copiaNPC.setAtaque_guerrero(i.getAtaque_guerrero());
-        copiaNPC.setAtaque_elfo(i.getAtaque_elfo());
-        copiaNPC.setAtaque_mago(i.getAtaque_mago());
-        copiaNPC.setAtaque_NPC(i.getAtaque_NPC());
-        copiaNPC.setPotions(i.getPotions());
+    private static void copyStats(Personatge i, Personatge copia) {      //copiar estadisticas de personatge
+        copia.setNombre(i.getNombre());
+        copia.setTipo(i.getTipo());
+        copia.setFuerza(i.getFuerza());
+        copia.setAgilidad(i.getAgilidad());
+        copia.setResistencia(i.getResistencia());
+        copia.setVida(i.getVida());
+        copia.setNivel(i.getNivel());
+        copia.setExperiencia(i.getExperiencia());
+        copia.setAtaque_guerrero(i.getAtaque_guerrero());
+        copia.setAtaque_elfo(i.getAtaque_elfo());
+        copia.setAtaque_mago(i.getAtaque_mago());
+        copia.setAtaque_NPC(i.getAtaque_NPC());
+        copia.setPotions(i.getPotions());
     }
 
-    private static void playerCharacterCopy(String characterName) {
+    private static void playerCharacterCopy(String characterName) {     //esta funcion hace una copia del jugador con el nombre que pasemos
         Personatge copiaJugador = new Personatge();
-        for (Personatge i : personajes) {
-            if (i.getNombre().equalsIgnoreCase(characterName)) {
-                copyStats(i, copiaJugador);
-                copias.add(copiaJugador);
-            }
-        }
+        copyStats(buscarPersonaje(characterName), copiaJugador);
     }
 
-    private static void betterCharacter() {
+    private static void betterCharacter() {     //menu donde se muestra el mejor jugador basandose en el atributo preguntando el que quiere filtrar y teniendo uno por default
         if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.\n");}
         else {
-            System.out.println("*PERSONAJE CON MAYOR NIVEL*");
+            System.out.println("*PERSONAJE CON MAYOR NIVEL*");      //default
             displayBetterCharacter(6);
             int opcionRanking = 0;
             do {
@@ -465,10 +460,10 @@ public class Main {
         }
     }
 
-    private static void rankingOrder() {
+    private static void rankingOrder() {    //funcion para hacer servir el ranking preguntando el atributo para filtrar y poniendo uno por default, además de respuestas de error
         if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.\n");}
         else {
-            System.out.println("*ORDENADO POR NIVEL*");
+            System.out.println("*ORDENADO POR NIVEL*");     //orden por default
             displayRankingOrderedBy(6);
             int opcionRanking = 0;
             do {
@@ -508,19 +503,19 @@ public class Main {
         }
     }
 
-    private static void displayRankingOrderedBy(int attribute) {
+    private static void displayRankingOrderedBy(int attribute) {    //funcion para mostrar el ranking completo ordenado
         sortRankingBy(attribute);
         displayCharacterStats();
         System.out.println();
     }
 
-    private static void displayBetterCharacter(int attribute) {
+    private static void displayBetterCharacter(int attribute) {     //funcion para mostrar el mejor personaje, primero ordena la lista con el atributo que toca y despues muestra solo el mejor de ese tipo
         sortRankingBy(attribute);
         displayBetterCharacterStats();
         System.out.println();
     }
 
-    private static void sortRankingBy(int attribute) {
+    private static void sortRankingBy(int attribute) {      //ordenar la lista de personajes dependiendo del atributo
         for (int i = 0; i < personajes.size() - 1; i++) {
             for (int j = 0; j < personajes.size() - 1 - i; j++) {
                 int value1 = 0;
@@ -560,7 +555,7 @@ public class Main {
         }
     }
 
-    private static void modificarPersonaje() {
+    private static void modificarPersonaje() {      //modificar un personaje con opciones del tipo o el nombre para escoger
         if (personajes.size() > 0) {
             String characterName = AskData.askString("Dime el nombre del personaje que quieres modificar: ");
             if (checkCharacterExists(characterName)) {
@@ -604,7 +599,7 @@ public class Main {
         }
     }
 
-    private static void eliminateCharacter() {
+    private static void eliminateCharacter() {      //eliminar el personaje que queramos
         String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
         if (checkCharacterExists(name)) {
             personajes.remove(buscarPersonaje(name));
@@ -612,7 +607,7 @@ public class Main {
         }else { System.out.println("\nNo existe ese personaje.\n"); }
     }
 
-    private static Personatge buscarPersonaje(String name) {
+    private static Personatge buscarPersonaje(String name) {    //buscar el personaje que queramos y devolver el objeto
         for (Personatge i : personajes) {
             if (i.getNombre().equalsIgnoreCase(name)) {
                 return i;
@@ -621,30 +616,30 @@ public class Main {
         return null;
     }
 
-    private static void createCharacter() {
+    private static void createCharacter() {     //funcion para crear un personaje nuevo
         String name = AskData.askString("Dime el nombre del personaje que quieres crear: ");
-        if (!checkCharacterExists(name) && !name.equalsIgnoreCase("enemigo")) {
+        if (!checkCharacterExists(name) && !name.equalsIgnoreCase("enemigo")) {     //condicion que mediante una funcion comprueva que no exista el personaje y que no se llame igual que los NPCs
             String tipo = "";
             while (!tipo.equalsIgnoreCase("guerrero") &&
                     !tipo.equalsIgnoreCase("mago") &&
-                    !tipo.equalsIgnoreCase("elfo")){
+                    !tipo.equalsIgnoreCase("elfo")){        //condicion para que introduzca el usuario una clase correcta
                 tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo): ");
-                tipo = tipo.toLowerCase();
+                tipo = tipo.toLowerCase();  //lo pasamos a lower case para guardarlo igual
             }
-            Personatge nuevoPersonaje = new Personatge(name, tipo);
+            Personatge nuevoPersonaje = new Personatge(name, tipo);     //creamos y añadimos el personaje
             personajes.add(nuevoPersonaje);
             displayCharacterStats();
             System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");
         }else { System.out.println("\nYa hay un personaje con ese nombre.(No puedes crear un personaje con el nombre *enemigo*)\n"); }
     }
 
-    private static void displayCharacterStats() {
+    private static void displayCharacterStats() {   //mostrar estadisticas de personaje
         for (Personatge character : personajes) {
             character.displayAttributes();
         }
     }
 
-    private static void displayBetterCharacterStats() {
+    private static void displayBetterCharacterStats() {     //mostramos las estadustucas del primer personaje de la lista
         int num = 0;
         for (Personatge character : personajes) {
             if (num == 0) {
@@ -654,7 +649,7 @@ public class Main {
         }
     }
 
-    private static boolean checkCharacterExists(String nombre) {
+    private static boolean checkCharacterExists(String nombre) {    //comprovar que existe el personaje
         for (Personatge i : personajes) {
             if (i.getNombre().equalsIgnoreCase(nombre)) {
                 return true;
