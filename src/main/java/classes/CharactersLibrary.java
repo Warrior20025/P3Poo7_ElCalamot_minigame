@@ -4,7 +4,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.util.Random;
 
-public class CharactersLibrary {
+public class CharactersLibrary {        //libreria de imagenes utiles :)
 
     public static String displayLibary() {
         Random randomNumber = new Random();

@@ -63,7 +63,7 @@ public class Personatge {
         this.potions = potions;
     }
 
-    //TIPOS ATAQUES
+    //TIPOS ATAQUES con display de output de cada caso
     public void ataque_guerrero(Personatge enemigo) {
         if (getAtaque_guerrero() > enemigo.getResistencia()) {
             System.out.println(nombre + " atacó con un espadazo a " + enemigo.getNombre() + " causando " + (getAtaque_guerrero() - enemigo.getResistencia()) + " de daño.");
@@ -245,13 +245,14 @@ public class Personatge {
         this.ataque_NPC = ataque_NPC;
     }
 
+    public void setAtaque_guerrero(int ataque_guerrero) {
+        this.ataque_guerrero = ataque_guerrero;
+    }
+
+    //getters de ataques con especificaciones
     public int getAtaque_guerrero() {
         ataque_guerrero = getFuerza() * 75 / 100 + getAgilidad() * 25 / 100;
         return ataque_guerrero;
-    }
-
-    public void setAtaque_guerrero(int ataque_guerrero) {
-        this.ataque_guerrero = ataque_guerrero;
     }
 
     public int getAtaque_mago() {
@@ -259,13 +260,15 @@ public class Personatge {
         return ataque_mago;
     }
 
-    public void setAtaque_mago(int ataque_mago) {
-        this.ataque_mago = ataque_mago;
-    }
-
     public int getAtaque_elfo() {
         ataque_elfo = getFuerza() * 75 / 100 + getAgilidad() * 25 / 100;
         return ataque_elfo;
+    }
+
+    //------------------------------------------------
+
+    public void setAtaque_mago(int ataque_mago) {
+        this.ataque_mago = ataque_mago;
     }
 
     public void setAtaque_elfo(int ataque_elfo) {
@@ -304,7 +307,7 @@ public class Personatge {
         this.vida = vida;
     }
 
-    public int getNivel() {
+    public int getNivel() {     //cada nivel son 1000 de experiencia
         int resultado = experiencia / 1000;
         nivel = resultado;
         return nivel;
