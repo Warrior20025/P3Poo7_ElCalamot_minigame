@@ -57,24 +57,6 @@ public class Main {
             }
         }
     }
-//Characters library ------ he pensado que solo deberiamos poner a los enemigos
-    // he pensado que para las batallas deberiamos poner lineas rollo se ha hecho X daño al enemigo o el enemigo te ha hecho X daño, además
-    // de que cuando se hace daño como he escrito arriba puede fallar a parte de que el daño que pone dependiendo de la resistencia
-    // del enemigo no le quitara tanta vida
-//                    System.out.println("\t\t\tDRAGON");     //enemy
-//                    System.out.println(CharactersLibrary.dragon());
-//                    System.out.println("\t DEAD OUTPUT");   //output para cuando muere el personaje
-//                    System.out.println(CharactersLibrary.dead());
-//                    System.out.println("\t\t\tDEMON");      //enemy
-//                    System.out.println(CharactersLibrary.demon());
-//                    System.out.println("\t\t  ELF");        //player character / enemy
-//                    System.out.println(CharactersLibrary.elf());
-//                    System.out.println("\t\tWARRIOR");      //player character  ---  **este no lo pondria**
-//                    System.out.println(CharactersLibrary.warrior());
-//                    System.out.println("\t\tENANO");        //player character / enemy
-//                    System.out.println(CharactersLibrary.enano());
-//                    System.out.println("\t\tWIZARD");       //player character / enemy
-//                    System.out.println(CharactersLibrary.wizard());
 
     private static void createNPC() {
         NPCs.add(new Personatge("Enemigo", "NPC", 50*(NPCs.size()+1), 50*(NPCs.size()+1), 50*(NPCs.size()+1), 75*(NPCs.size()+1), 1*(NPCs.size()+1), 1000*(NPCs.size()+1), 0, 0, 0, 50*(NPCs.size()+1), 0));
