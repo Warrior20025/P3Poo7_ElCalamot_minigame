@@ -122,7 +122,7 @@ public class Personatge {
         System.out.println("Has dado golpe crítico!!");
         int dañoFuerte = getAtaque_mago() * 2;
         if (dañoFuerte > enemigo.getResistencia()) {
-            System.out.println(nombre + " ha dado un golpe crítico con este hechizo " + enemigo.getNombre() + " causando " + (dañoFuerte - enemigo.getResistencia()) + " de daño.");
+            System.out.println(nombre + " ha dado un golpe crítico con este hechizo a " + enemigo.getNombre() + " causando " + (dañoFuerte - enemigo.getResistencia()) + " de daño.");
             enemigo.recibirDaño(dañoFuerte);
         }
         else {
@@ -177,15 +177,15 @@ public class Personatge {
     }
 
     public void improveGlobalStats() {
-        setFuerza(getFuerza()+125);
-        setAgilidad(getAgilidad()+50);
-        setResistencia(getResistencia()+75);
-        setVida(getVida()+85);
-        setExperiencia(getExperiencia()+1000);
+        setFuerza(getFuerza()+25);
+        setAgilidad(getAgilidad()+25);
+        setResistencia(getResistencia()+25);
+        setVida(getVida()+25);
+        setExperiencia(getExperiencia()+100);
         setNivel(getNivel());
-        setAtaque_guerrero(getAtaque_guerrero()+55);
-        setAtaque_mago(getAtaque_mago()+55);
-        setAtaque_elfo(getAtaque_elfo()+55);
+        setAtaque_guerrero(getAtaque_guerrero()+25);
+        setAtaque_mago(getAtaque_mago()+25);
+        setAtaque_elfo(getAtaque_elfo()+25);
     }
 
     //DAÑO

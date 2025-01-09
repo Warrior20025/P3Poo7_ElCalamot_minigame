@@ -192,7 +192,6 @@ public class Main {
                             int nivelJuego = AskData.askInt("¿A qué nivel quieres jugar? (tienes desbloqueados " + NPCs.size() + " niveles): ", "No tienes ese nivel desbloqueado (no existen los niveles negativos)", 1, NPCs.size());
                             NPCCharacterCopy(nivelJuego); //index 0
                             playerCharacterCopy(characterName); //index 1
-                            nivelJuego--;
                             Random starter = new Random();
                             int start = starter.nextInt(20);
                             System.out.println("\t\tJUGANDO");
@@ -332,7 +331,7 @@ public class Main {
                                 System.out.println(deadDisplay);    //muestra dead output
                             }
                             else if (!copias.get(0).isAlive()){
-                                if (copias.get(0).getNivel() == NPCs.size() || copias.get(1).getNivel() < copias.get(0).getNivel()) {
+                                if (copias.get(0).getNivel() == NPCs.size() || copias.get(1).getNivel() <= copias.get(0).getNivel()) {
                                     System.out.println("**HAS DERROTADO AL ENEMIGO**\n");
                                     if (copias.get(0).getNivel() == NPCs.size()) {
                                         createNPC();
