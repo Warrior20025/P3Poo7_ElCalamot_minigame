@@ -146,7 +146,6 @@ public class Personatge {
     public void improveWarriorStats() {
         setFuerza(getFuerza()+125);
         setAgilidad(getAgilidad()+50);
-        setResistencia(getResistencia()+75);
         setVida(getVida()+85);
         setExperiencia(getExperiencia()+1000);
         setNivel(getNivel());
@@ -157,7 +156,6 @@ public class Personatge {
     public void improveMageStats() {
         setFuerza(getFuerza()+105);
         setAgilidad(getAgilidad()+80);
-        setResistencia(getResistencia()+55);
         setVida(getVida()+111);
         setExperiencia(getExperiencia()+1000);
         setNivel(getNivel());
@@ -168,7 +166,6 @@ public class Personatge {
     public void improveElfStats() {
         setFuerza(getFuerza()+105);
         setAgilidad(getAgilidad()+120);
-        setResistencia(getResistencia()+65);
         setVida(getVida()+85);
         setExperiencia(getExperiencia()+1000);
         setNivel(getNivel());
@@ -179,7 +176,7 @@ public class Personatge {
     public void improveGlobalStats() {
         setFuerza(getFuerza()+25);
         setAgilidad(getAgilidad()+25);
-        setResistencia(getResistencia()+25);
+        setResistencia(getResistencia()+5);
         setVida(getVida()+25);
         setExperiencia(getExperiencia()+100);
         setNivel(getNivel());
@@ -214,11 +211,12 @@ public class Personatge {
         System.out.println(nombre + " se curó y recuperó " + curacion + " de vida. Vida actual: " + vida);
     }
 
-    public void usarPocion() {
+    public void usePotions() {
         System.out.println("Usas pocion de curación -->");
         int pocion = 100;
         this.vida += pocion;
         System.out.println(nombre + " se curó y recuperó " + pocion + " de vida. Vida actual: " + vida);
+        potions --;
     }
 
 
