@@ -18,26 +18,26 @@ public class Main {
         createNPC();
 
         while (engine) {
-            System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
+            System.out.println("\t\tMENÚ\n1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
             int opcion = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
             System.out.println();
             switch (opcion) {
-                case 1: //crear
+                case 1: //create character
                     createCharacter();
                     break;
-                case 2: //modificar
-                    modificarPersonaje();
+                case 2: //modify character
+                    modifyCharacter();
                     break;
                 case 3: //ranking
                     rankingOrder();
                     break;
-                case 4: //eliminar personaje
+                case 4: //eliminate character
                     eliminateCharacter();
                     break;
                 case 5: //better Character
                     betterCharacter();
                     break;
-                case 6:
+                case 6: //Game
                     play();
                     break;
                 case 7: //salir
@@ -69,7 +69,7 @@ public class Main {
         System.out.println();
     }
 
-    private static void ataquesJuego(int numAtaque) {   //funcion de ataques para diferenciar ataque normal del crítico con un random  y dependiendo del tipo de jugador
+    private static void gameAtacks(int numAtaque) {   //funcion de ataques para diferenciar ataque normal del crítico con un random  y dependiendo del tipo de jugador
         Random critico = new Random();
         int numcrit = critico.nextInt(10);
         System.out.println(numcrit);
@@ -103,7 +103,7 @@ public class Main {
 
     private static void play() {        //juego
         if (personajes.isEmpty()) {
-            System.out.println("No tienes ningún personaje creado.");
+            System.out.println("No tienes ningún personaje creado.\n");
         }
         else {
             String characterName = AskData.askString("Dime el nombre del personaje con el que quieras jugar: ");    //pedimos personaje con el que jugar
@@ -195,7 +195,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(1);
+                                                gameAtacks(1);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -214,7 +214,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(2);
+                                                gameAtacks(2);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -234,7 +234,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(3);
+                                                gameAtacks(3);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -260,7 +260,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(1);
+                                                gameAtacks(1);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -279,7 +279,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(2);
+                                                gameAtacks(2);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -299,7 +299,7 @@ public class Main {
                                                 juego = false;
                                                 break;
                                             case 1:
-                                                ataquesJuego(3);
+                                                gameAtacks(3);
                                                 break;
                                             case 2:
                                                 copias.get(1).usarPocion();
@@ -345,7 +345,7 @@ public class Main {
                 }
             }
             else {
-                System.out.println("No existe un personaje con este nombre.");
+                System.out.println("No existe un personaje con este nombre.\n");
             }
         }
     }
@@ -414,7 +414,8 @@ public class Main {
 
     private static void playerCharacterCopy(String characterName) {     //esta funcion hace una copia del jugador con el nombre que pasemos
         Personatge copiaJugador = new Personatge();
-        copyStats(buscarPersonaje(characterName), copiaJugador);
+        copyStats(searchCharacter(characterName), copiaJugador);
+        copias.add(copiaJugador);
     }
 
     private static void betterCharacter() {     //menu donde se muestra el mejor jugador basandose en el atributo preguntando el que quiere filtrar y teniendo uno por default
@@ -555,7 +556,7 @@ public class Main {
         }
     }
 
-    private static void modificarPersonaje() {      //modificar un personaje con opciones del tipo o el nombre para escoger
+    private static void modifyCharacter() {      //modificar un personaje con opciones del tipo o el nombre para escoger
         if (personajes.size() > 0) {
             String characterName = AskData.askString("Dime el nombre del personaje que quieres modificar: ");
             if (checkCharacterExists(characterName)) {
@@ -569,12 +570,12 @@ public class Main {
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR NOMBRE");
                         String nombreNuevo = AskData.askString("Dime el nombre nuevo de tu personaje: ");
-                        buscarPersonaje(characterName).setNombre(nombreNuevo);
+                        searchCharacter(characterName).setNombre(nombreNuevo);
                         break;
                     case 2:
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR TIPO");
-                        String tipoMostrar = buscarPersonaje(characterName).getTipo();
+                        String tipoMostrar = searchCharacter(characterName).getTipo();
                         String tipoNuevo = "";
                         while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
                             tipoNuevo = AskData.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
@@ -583,7 +584,7 @@ public class Main {
                                 System.out.println("No existe ese tipo.");
                             }
                         }
-                        buscarPersonaje(characterName).setTipo(tipoNuevo);
+                        searchCharacter(characterName).setTipo(tipoNuevo);
                         break;
                     case 3:
                         System.out.println("Has salido del menu de modificación.\n");
@@ -600,14 +601,21 @@ public class Main {
     }
 
     private static void eliminateCharacter() {      //eliminar el personaje que queramos
-        String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
-        if (checkCharacterExists(name)) {
-            personajes.remove(buscarPersonaje(name));
-            System.out.println("Se ha eliminado el personaje de tu colección.\n");
-        }else { System.out.println("\nNo existe ese personaje.\n"); }
+        if (personajes.size() > 0) {
+            String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
+            if (checkCharacterExists(name)) {
+                personajes.remove(searchCharacter(name));
+                System.out.println("Se ha eliminado el personaje de tu colección.\n");
+            } else {
+                System.out.println("\nNo existe ese personaje.\n");
+            }
+        }
+        else {
+            System.out.println("No tienes personajes.\n");
+        }
     }
 
-    private static Personatge buscarPersonaje(String name) {    //buscar el personaje que queramos y devolver el objeto
+    private static Personatge searchCharacter(String name) {    //buscar el personaje que queramos y devolver el objeto
         for (Personatge i : personajes) {
             if (i.getNombre().equalsIgnoreCase(name)) {
                 return i;
