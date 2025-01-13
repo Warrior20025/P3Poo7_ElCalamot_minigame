@@ -18,7 +18,7 @@ public class Main {
         createNPC();
 
         while (engine) {
-            System.out.println("1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
+            System.out.println("\t\tMENÚ\n1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
             int opcion = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
             System.out.println();
             switch (opcion) {
@@ -103,7 +103,7 @@ public class Main {
 
     private static void play() {        //juego
         if (personajes.isEmpty()) {
-            System.out.println("No tienes ningún personaje creado.");
+            System.out.println("No tienes ningún personaje creado.\n");
         }
         else {
             String characterName = AskData.askString("Dime el nombre del personaje con el que quieras jugar: ");    //pedimos personaje con el que jugar
@@ -345,7 +345,7 @@ public class Main {
                 }
             }
             else {
-                System.out.println("No existe un personaje con este nombre.");
+                System.out.println("No existe un personaje con este nombre.\n");
             }
         }
     }
@@ -601,11 +601,18 @@ public class Main {
     }
 
     private static void eliminateCharacter() {      //eliminar el personaje que queramos
-        String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
-        if (checkCharacterExists(name)) {
-            personajes.remove(searchCharacter(name));
-            System.out.println("Se ha eliminado el personaje de tu colección.\n");
-        }else { System.out.println("\nNo existe ese personaje.\n"); }
+        if (personajes.size() > 0) {
+            String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
+            if (checkCharacterExists(name)) {
+                personajes.remove(searchCharacter(name));
+                System.out.println("Se ha eliminado el personaje de tu colección.\n");
+            } else {
+                System.out.println("\nNo existe ese personaje.\n");
+            }
+        }
+        else {
+            System.out.println("No tienes personajes.\n");
+        }
     }
 
     private static Personatge searchCharacter(String name) {    //buscar el personaje que queramos y devolver el objeto
