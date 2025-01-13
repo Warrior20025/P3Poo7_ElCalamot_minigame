@@ -72,7 +72,6 @@ public class Main {
     private static void gameAtacks(int numAtaque) {   //funcion de ataques para diferenciar ataque normal del crítico con un random  y dependiendo del tipo de jugador
         Random critico = new Random();
         int numcrit = critico.nextInt(10);
-        System.out.println(numcrit);
         switch (numAtaque) {
             case 1:
                 if (numcrit < 4) {
