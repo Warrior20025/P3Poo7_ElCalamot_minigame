@@ -59,7 +59,7 @@ public class Main {
     }
 
     private static void createNPC() {   //funcion de crear NPC
-        NPCs.add(new Personatge("Enemigo", "NPC", 50*(NPCs.size()+1), 50*(NPCs.size()+1), 50*(NPCs.size()+1), 75*(NPCs.size()+1), 1*(NPCs.size()+1), 1000*(NPCs.size()+1), 0, 0, 0, 50*(NPCs.size()+1), 0));
+        NPCs.add(new Personatge("Enemigo", "NPC", 73*(NPCs.size()+1), 50*(NPCs.size()+1), 50*(NPCs.size()+1), 75*(NPCs.size()+1), 1*(NPCs.size()+1), 1000*(NPCs.size()+1), 0, 0, 0, 50*(NPCs.size()+1), 0));
     }
 
     private static void showNPC() {     //display stats NPC
@@ -197,7 +197,7 @@ public class Main {
                                                 gameAtacks(1);
                                                 break;
                                             case 2:
-                                                copias.get(1).usarPocion();
+                                                copias.get(1).usePotions();
                                                 break;
                                         }
                                     }
@@ -216,7 +216,7 @@ public class Main {
                                                 gameAtacks(2);
                                                 break;
                                             case 2:
-                                                copias.get(1).usarPocion();
+                                                copias.get(1).usePotions();
                                                 break;
                                         }
 
@@ -236,73 +236,77 @@ public class Main {
                                                 gameAtacks(3);
                                                 break;
                                             case 2:
-                                                copias.get(1).usarPocion();
+                                                copias.get(1).usePotions();
                                                 break;
                                         }
                                     }
                                     else {
                                         System.out.println("ERROR, REINICA EL JUEGO");
                                     }
-                                    enemyAtack();
+                                    if (copias.get(0).isAlive()) {
+                                        enemyAtack();
+                                    }
                                 }
                                 else {      //empieza atacando el NPC y el jugador tiene casos dependiendo del tipo
                                     enemyAtack();
-                                    if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
-                                        int opcionAtacar = 10;
-                                        while (opcionAtacar < 0 || opcionAtacar > 2) {
-                                            System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Espadazo sencillo\n2. Usar pocion de curación\n");
-                                            opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
+                                    if (copias.get(1).isAlive()) {
+                                        if (copias.get(1).getTipo().equalsIgnoreCase("guerrero")) {
+                                            int opcionAtacar = 10;
+                                            while (opcionAtacar < 0 || opcionAtacar > 2) {
+                                                System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Espadazo sencillo\n2. Usar pocion de curación\n");
+                                                opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
+                                            }
+                                            switch (opcionAtacar) {
+                                                case 0:
+                                                    System.out.println("SALIENDO DE LA PARTIDA\n. . .");
+                                                    juego = false;
+                                                    break;
+                                                case 1:
+                                                    gameAtacks(1);
+                                                    break;
+                                                case 2:
+                                                    copias.get(1).usePotions();
+                                                    break;
+                                            }
                                         }
-                                        switch (opcionAtacar) {
-                                            case 0:
-                                                System.out.println("SALIENDO DE LA PARTIDA\n. . .");
-                                                juego = false;
-                                                break;
-                                            case 1:
-                                                gameAtacks(1);
-                                                break;
-                                            case 2:
-                                                copias.get(1).usarPocion();
-                                                break;
-                                        }
-                                    }
-                                    else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
-                                        int opcionAtacar = 10;
-                                        while (opcionAtacar < 0 || opcionAtacar > 2) {
-                                            System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Hechizo sencillo\n2. Usar pocion de curación\n");
-                                            opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
-                                        }
-                                        switch (opcionAtacar) {
-                                            case 0:
-                                                System.out.println("SALIENDO DE LA PARTIDA\n. . .");
-                                                juego = false;
-                                                break;
-                                            case 1:
-                                                gameAtacks(2);
-                                                break;
-                                            case 2:
-                                                copias.get(1).usarPocion();
-                                                break;
-                                        }
+                                        else if (copias.get(1).getTipo().equalsIgnoreCase("mago")) {
+                                            int opcionAtacar = 10;
+                                            while (opcionAtacar < 0 || opcionAtacar > 2) {
+                                                System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Hechizo sencillo\n2. Usar pocion de curación\n");
+                                                opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
+                                            }
+                                            switch (opcionAtacar) {
+                                                case 0:
+                                                    System.out.println("SALIENDO DE LA PARTIDA\n. . .");
+                                                    juego = false;
+                                                    break;
+                                                case 1:
+                                                    gameAtacks(2);
+                                                    break;
+                                                case 2:
+                                                    copias.get(1).usePotions();
+                                                    break;
+                                            }
 
-                                    }
-                                    else if (copias.get(1).getTipo().equalsIgnoreCase("elfo")) {
-                                        int opcionAtacar = 10;
-                                        while (opcionAtacar < 0 || opcionAtacar > 2) {
-                                            System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Lanzar flecha\n2. Usar pocion de curación\n");
-                                            opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
                                         }
-                                        switch (opcionAtacar) {
-                                            case 0:
-                                                System.out.println("SALIENDO DE LA PARTIDA\n. . .");
-                                                juego = false;
-                                                break;
-                                            case 1:
-                                                gameAtacks(3);
-                                                break;
-                                            case 2:
-                                                copias.get(1).usarPocion();
-                                                break;
+                                        else if (copias.get(1).getTipo().equalsIgnoreCase("elfo")) {
+                                            int opcionAtacar = 10;
+                                            while (opcionAtacar < 0 || opcionAtacar > 2) {
+                                                System.out.println("Empieza atacando el enemigo, opciones de tu ataque: \n0. Rendirse\n1. Lanzar flecha\n2. Usar pocion de curación\n");
+                                                opcionAtacar = AskData.askInt("Opcion: ", "Selecciona una opcion correcta.", 0, 2);
+                                            }
+                                            switch (opcionAtacar) {
+                                                case 0:
+                                                    System.out.println("SALIENDO DE LA PARTIDA\n. . .");
+                                                    juego = false;
+                                                    break;
+                                                case 1:
+                                                    gameAtacks(3);
+                                                    break;
+                                                case 2:
+                                                    copias.get(1).usePotions();
+                                                    break;
+                                            }
                                         }
                                     }
                                 }
