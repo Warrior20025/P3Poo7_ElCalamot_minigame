@@ -18,7 +18,7 @@ public class Main {
         createNPC();
 
         while (engine) {
-            System.out.println("\t\tMENÚ\n1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personatje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
+            System.out.println("\t\tMENÚ\n1. Crear personaje\n2. Modificar personaje\n3. Ranking\n4. Eliminar personaje\n5. Mejor personaje\n6. JUGAR\n7. SALIR");
             int opcion = AskData.askInt("Dime una opción: ", "Dime una opción correcta: ", 1, 7);
             System.out.println();
             switch (opcion) {
