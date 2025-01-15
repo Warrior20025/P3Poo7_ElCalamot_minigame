@@ -212,11 +212,16 @@ public class Personatge {
     }
 
     public void usePotions() {
-        System.out.println("Usas pocion de curación -->");
-        int pocion = 100;
-        this.vida += pocion;
-        System.out.println(nombre + " se curó y recuperó " + pocion + " de vida. Vida actual: " + vida);
-        potions --;
+        if (potions > 0) {
+            System.out.println("Usas pocion de curación -->");
+            int pocion = 100;
+            this.vida += pocion;
+            System.out.println(nombre + " se curó y recuperó " + pocion + " de vida. Vida actual: " + vida);
+            potions --;
+        }
+        else {
+            System.out.println("\nNo tienes pociones restantes.\n");
+        }
     }
 
 
