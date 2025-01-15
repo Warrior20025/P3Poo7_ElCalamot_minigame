@@ -101,7 +101,7 @@ public class Main {
     }
 
     private static void play() {        //juego
-        if (personajes.isEmpty()) {
+        if (!isNotEmpty()) {
             System.out.println("No tienes ningún personaje creado.\n");
         }
         else {
@@ -239,9 +239,6 @@ public class Main {
                                                 copias.get(1).usePotions();
                                                 break;
                                         }
-                                    }
-                                    else {
-                                        System.out.println("ERROR, REINICA EL JUEGO");
                                     }
                                     if (copias.get(0).isAlive()) {
                                         enemyAtack();
@@ -422,7 +419,7 @@ public class Main {
     }
 
     private static void betterCharacter() {     //menu donde se muestra el mejor jugador basandose en el atributo preguntando el que quiere filtrar y teniendo uno por default
-        if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.\n");}
+        if (!isNotEmpty()) {System.out.println("No tienes ningun personaje.\n");}
         else {
             System.out.println("*PERSONAJE CON MAYOR NIVEL*");      //default
             displayBetterCharacter(6);
@@ -436,27 +433,27 @@ public class Main {
                 System.out.println();
                 switch (opcionRanking) {
                     case 1:
-                        System.out.println("Mayor Fuerza:");
+                        System.out.println("*PERSONAJE CON MAYOR FUERZA*");
                         displayBetterCharacter(1);
                         break;
                     case 2:
-                        System.out.println("Mayor agilidad:");
+                        System.out.println("*PERSONAJE CON MAYOR AGILIDAD*");
                         displayBetterCharacter(2);
                         break;
                     case 3:
-                        System.out.println("Mayor resistencia:");
+                        System.out.println("*PERSONAJE CON MAYOR RESISTENCIA*");
                         displayBetterCharacter(3);
                         break;
                     case 4:
-                        System.out.println("Mas vida:");
+                        System.out.println("*PERSONAJE CON MAYOR VIDA*");
                         displayBetterCharacter(4);
                         break;
                     case 5:
-                        System.out.println("Mayor cantidad de experiencia:");
+                        System.out.println("*PERSONAJE CON MAYOR EXPERIENCIA*");
                         displayBetterCharacter(5);
                         break;
                     case 6:
-                        System.out.println("Mayor nivel:");
+                        System.out.println("*PERSONAJE CON MAYOR NIVEL*");
                         displayBetterCharacter(6);
                         break;
                 }
@@ -465,13 +462,13 @@ public class Main {
     }
 
     private static void rankingOrder() {    //funcion para hacer servir el ranking preguntando el atributo para filtrar y poniendo uno por default, además de respuestas de error
-        if (personajes.isEmpty()) {System.out.println("No tienes ningun personaje.\n");}
+        if (!isNotEmpty()) {System.out.println("No tienes ningun personaje.\n");}
         else {
             System.out.println("*ORDENADO POR NIVEL*");     //orden por default
             displayRankingOrderedBy(6);
             int opcionRanking = 0;
             do {
-                System.out.println("\n\t\tOPCIONES DE RANKING");
+                System.out.println("\n **OPCIONES DE RANKING**");
                 System.out.println("1.Ordenar por fuerza.\n2.Ordenar por agilidad." +
                         "\n3.Ordenar por resistencia.\n4.Ordenar por vida." +
                         "\n5.Ordenar por experiencia.\n6.Ordenar por nivel.\n7.Salir");
@@ -479,27 +476,27 @@ public class Main {
                 System.out.println();
                 switch (opcionRanking) {
                     case 1:
-                        System.out.println("Ordenado por Fuerza:");
+                        System.out.println("*ORDENADO POR FUERZA*");
                         displayRankingOrderedBy(1);
                         break;
                     case 2:
-                        System.out.println("Ordenado por agilidad:");
+                        System.out.println("*ORDENADO POR AGILIDAD*");
                         displayRankingOrderedBy(2);
                         break;
                     case 3:
-                        System.out.println("Ordenado por resistencia:");
+                        System.out.println("*ORDENADO POR RESISTENCIA*");
                         displayRankingOrderedBy(3);
                         break;
                     case 4:
-                        System.out.println("Ordenado por vida:");
+                        System.out.println("*ORDENADO POR VIDA*");
                         displayRankingOrderedBy(4);
                         break;
                     case 5:
-                        System.out.println("Ordenado por experiencia:");
+                        System.out.println("*ORDENADO POR EXPERIENCIA*");
                         displayRankingOrderedBy(5);
                         break;
                     case 6:
-                        System.out.println("Ordenado por nivel:");
+                        System.out.println("*ORDENADO POR NIVEL*");
                         displayRankingOrderedBy(6);
                         break;
                 }
@@ -560,7 +557,7 @@ public class Main {
     }
 
     private static void modifyCharacter() {      //modificar un personaje con opciones del tipo o el nombre para escoger
-        if (personajes.size() > 0) {
+        if (isNotEmpty()) {
             String characterName = AskData.askString("Dime el nombre del personaje que quieres modificar: ");
             if (checkCharacterExists(characterName)) {
                 System.out.println("\n");
@@ -573,8 +570,13 @@ public class Main {
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR NOMBRE");
                         String nombreNuevo = AskData.askString("Dime el nombre nuevo de tu personaje: ");
-                        searchCharacter(characterName).setNombre(nombreNuevo);
-                        System.out.println("\n**Se ha modificado el nombre correctamente**\n");
+                        if (!checkCharacterExists(nombreNuevo)) {
+                            searchCharacter(characterName).setNombre(nombreNuevo);
+                            System.out.println("\n**Se ha modificado el nombre correctamente**\n");
+                        }
+                        else {
+                            System.out.println("\nYa hay un personaje con ese nombre.\n");
+                        }
                         break;
                     case 2:
                         System.out.println("\n");
@@ -602,12 +604,16 @@ public class Main {
         }
     }
 
+    private static boolean isNotEmpty() {
+        return personajes.size() > 0;
+    }
+
     private static boolean correctType(String tipoNuevo) {      //comprovar que el tipo es correcto
         return tipoNuevo.equals("guerrero") || tipoNuevo.equals("mago") || tipoNuevo.equals("elfo");
     }
 
     private static void eliminateCharacter() {      //eliminar el personaje que queramos
-        if (personajes.size() > 0) {
+        if (isNotEmpty()) {
             String name = AskData.askString("Dime el nombre del personaje que quieres eliminar: ");
             if (checkCharacterExists(name)) {
                 personajes.remove(searchCharacter(name));
