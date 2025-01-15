@@ -574,13 +574,14 @@ public class Main {
                         System.out.println("\t\tMODIFICAR NOMBRE");
                         String nombreNuevo = AskData.askString("Dime el nombre nuevo de tu personaje: ");
                         searchCharacter(characterName).setNombre(nombreNuevo);
+                        //añadir print
                         break;
                     case 2:
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR TIPO");
                         String tipoMostrar = searchCharacter(characterName).getTipo();
                         String tipoNuevo = "";
-                        while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
+                        while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){  //modificar esto
                             tipoNuevo = AskData.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
                             tipoNuevo = tipoNuevo.toLowerCase();
                             if (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
@@ -630,8 +631,8 @@ public class Main {
     private static void createCharacter() {     //funcion para crear un personaje nuevo
         String name = AskData.askString("Dime el nombre del personaje que quieres crear: ");
         if (!checkCharacterExists(name) && !name.equalsIgnoreCase("enemigo")) {     //condicion que mediante una funcion comprueva que no exista el personaje y que no se llame igual que los NPCs
-            String tipo = "";
-            while (!tipo.equalsIgnoreCase("guerrero") &&
+            String tipo = "";    //arreglar
+            while (!tipo.equalsIgnoreCase("guerrero") &&      //he creado un método
                     !tipo.equalsIgnoreCase("mago") &&
                     !tipo.equalsIgnoreCase("elfo")){        //condicion para que introduzca el usuario una clase correcta
                 tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo): ");
@@ -640,7 +641,7 @@ public class Main {
             Personatge nuevoPersonaje = new Personatge(name, tipo);     //creamos y añadimos el personaje
             personajes.add(nuevoPersonaje);
             displayCharacterStats();
-            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");
+            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");   //alternarar print
         }else { System.out.println("\nYa hay un personaje con ese nombre.(No puedes crear un personaje con el nombre *enemigo*)\n"); }
     }
 

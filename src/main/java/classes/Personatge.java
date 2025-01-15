@@ -342,7 +342,7 @@ public class Personatge {
 
     //MOSTRAR STATS
     public void displayAttributes() {
-        System.out.println("Nombre: " + getNombre() + "  Tipo: " + getTipo() + "  Fuerza: "
+        System.out.println("Nombre: " + getNombre() + "  Tipo: " + getTipo() + "  Fuerza: "       //modificar
             + getFuerza() + "  Agilidad: " + getAgilidad() + "  Resistencia: "
             + getResistencia() + "  Vida: " + getVida() + "  Nivel: " + getNivel()
             + "  Experiencia: " + getExperiencia() + " Pociones: " + getPotions() + "\n");
