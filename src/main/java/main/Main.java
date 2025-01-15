@@ -479,27 +479,27 @@ public class Main {
                 System.out.println();
                 switch (opcionRanking) {
                     case 1:
-                        System.out.println("Ordenado por Fuerza:");
+                        System.out.println("ORDENADO POR FUERZA:");
                         displayRankingOrderedBy(1);
                         break;
                     case 2:
-                        System.out.println("Ordenado por agilidad:");
+                        System.out.println("ORDENADO POR AGILIDAD:");
                         displayRankingOrderedBy(2);
                         break;
                     case 3:
-                        System.out.println("Ordenado por resistencia:");
+                        System.out.println("ORDENADO POR RESISTENCIA:");
                         displayRankingOrderedBy(3);
                         break;
                     case 4:
-                        System.out.println("Ordenado por vida:");
+                        System.out.println("ORDENADO POR VIDA:");
                         displayRankingOrderedBy(4);
                         break;
                     case 5:
-                        System.out.println("Ordenado por experiencia:");
+                        System.out.println("ORDENADO POR EXPERIENCIA:");
                         displayRankingOrderedBy(5);
                         break;
                     case 6:
-                        System.out.println("Ordenado por nivel:");
+                        System.out.println("ORDENADO POR NIVEL:");
                         displayRankingOrderedBy(6);
                         break;
                 }
