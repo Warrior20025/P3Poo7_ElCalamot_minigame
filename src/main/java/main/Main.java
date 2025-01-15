@@ -574,21 +574,19 @@ public class Main {
                         System.out.println("\t\tMODIFICAR NOMBRE");
                         String nombreNuevo = AskData.askString("Dime el nombre nuevo de tu personaje: ");
                         searchCharacter(characterName).setNombre(nombreNuevo);
-                        //añadir print
+                        System.out.println("\n**Se ha modificado el nombre correctamente**\n");
                         break;
                     case 2:
                         System.out.println("\n");
                         System.out.println("\t\tMODIFICAR TIPO");
                         String tipoMostrar = searchCharacter(characterName).getTipo();
                         String tipoNuevo = "";
-                        while (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){  //modificar esto
-                            tipoNuevo = AskData.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):");
-                            tipoNuevo = tipoNuevo.toLowerCase();
-                            if (!tipoNuevo.equals("guerrero") && !tipoNuevo.equals("mago") && !tipoNuevo.equals("elfo") && !tipoNuevo.equals("enano")){
-                                System.out.println("No existe ese tipo.");
-                            }
+                        while (!correctType(tipoNuevo)){
+                            tipoNuevo = AskData.askString("Dime el tipo nuevo que quieres para tu personaje (actual : " + tipoMostrar + "):").toLowerCase();
+                            if (!correctType(tipoNuevo)){System.out.println("No existe ese tipo.");}
                         }
                         searchCharacter(characterName).setTipo(tipoNuevo);
+                        System.out.println("\n**Se ha modificado el tipo correctamente**\n");
                         break;
                     case 3:
                         System.out.println("Has salido del menu de modificación.\n");
@@ -602,6 +600,10 @@ public class Main {
         else {
             System.out.println("No tienes personajes.\n");
         }
+    }
+
+    private static boolean correctType(String tipoNuevo) {      //comprovar que el tipo es correcto
+        return tipoNuevo.equals("guerrero") || tipoNuevo.equals("mago") || tipoNuevo.equals("elfo");
     }
 
     private static void eliminateCharacter() {      //eliminar el personaje que queramos
@@ -631,17 +633,17 @@ public class Main {
     private static void createCharacter() {     //funcion para crear un personaje nuevo
         String name = AskData.askString("Dime el nombre del personaje que quieres crear: ");
         if (!checkCharacterExists(name) && !name.equalsIgnoreCase("enemigo")) {     //condicion que mediante una funcion comprueva que no exista el personaje y que no se llame igual que los NPCs
-            String tipo = "";    //arreglar
-            while (!tipo.equalsIgnoreCase("guerrero") &&      //he creado un método
-                    !tipo.equalsIgnoreCase("mago") &&
-                    !tipo.equalsIgnoreCase("elfo")){        //condicion para que introduzca el usuario una clase correcta
+            String tipo = "";
+            while (!correctType(tipo)){        //condicion para que introduzca el usuario una clase correcta
                 tipo = AskData.askString("Dime que tipo de personaje es " + name + " (guerrero, mago, elfo): ");
                 tipo = tipo.toLowerCase();  //lo pasamos a lower case para guardarlo igual
+                if (!correctType(tipo)){System.out.println("No existe ese tipo.");}
             }
             Personatge nuevoPersonaje = new Personatge(name, tipo);     //creamos y añadimos el personaje
             personajes.add(nuevoPersonaje);
+            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");
+            System.out.println("\t\t**PERSONAJES ACTUALES**");
             displayCharacterStats();
-            System.out.println("\nSe ha creado un personaje de tipo " + tipo + " con " + name + " como nombre.\n");   //alternarar print
         }else { System.out.println("\nYa hay un personaje con ese nombre.(No puedes crear un personaje con el nombre *enemigo*)\n"); }
     }
 
