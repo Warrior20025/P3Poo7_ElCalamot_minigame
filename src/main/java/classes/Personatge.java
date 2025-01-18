@@ -346,17 +346,19 @@ public class Personatge {
 
 
     //MOSTRAR STATS
-    public void displayAttributes() {
-        System.out.println("Nombre: " + getNombre() + " | Tipo: " + getTipo() + " | Fuerza: "
+    public String displayAttributes() {
+        String Attributes = ("Nombre: " + getNombre() + " | Tipo: " + getTipo() + " | Fuerza: "
             + getFuerza() + " | Agilidad: " + getAgilidad() + " | Resistencia: "
             + getResistencia() + " | Vida: " + getVida() + " | Nivel: " + getNivel()
             + " | Experiencia: " + getExperiencia() + " | Pociones: " + getPotions() + "\n");
+        return Attributes;
     }
 
-    public void displayNPCAttributes() {
-        System.out.println("Nombre: " + getNombre() + " | Nivel: " + getNivel() + " | Fuerza: "
+    public String displayNPCAttributes() {
+        String NPCAttributes = ("Nombre: " + getNombre() + " | Nivel: " + getNivel() + " | Fuerza: "
                 + getFuerza() + " | Agilidad: " + getAgilidad() + " | Resistencia: "
                 + getResistencia() + " | Vida: " + getVida() + "\n");
+        return NPCAttributes;
     }
 
 }

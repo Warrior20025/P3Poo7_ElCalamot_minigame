@@ -64,7 +64,7 @@ public class Main {
 
     private static void showNPC() {     //display stats NPC
         for (Personatge character : NPCs) {
-            character.displayNPCAttributes();
+            System.out.println(character.displayNPCAttributes());
         }
         System.out.println();
     }
@@ -357,24 +357,21 @@ public class Main {
                     case 1:
                         i.improveWarriorStats();
                         System.out.println("Has aumentado tus estadisticas de guerrero: ");
-                        i.displayAttributes();
                         break;
                     case 2:
                         i.improveMageStats();
                         System.out.println("Has aumentado tus estadisticas de mago: ");
-                        i.displayAttributes();
                         break;
                     case 3:
                         i.improveElfStats();
                         System.out.println("Has aumentado tus estadisticas de elfo: ");
-                        i.displayAttributes();
                         break;
                     case 4:
                         i.improveGlobalStats();
                         System.out.println("Has aumentado tus estadisticas generales, ya que este nivel ya lo tenias desbloqueado: ");
-                        i.displayAttributes();
                         break;
                 }
+                System.out.println(i.displayAttributes());
             }
         }
     }
@@ -383,7 +380,7 @@ public class Main {
         System.out.println("El enemigo te lanza un ataque -->");
         copias.get(0).ataque_NPC(copias.get(1));
         System.out.println("\nEstadisticas restantes de " + copias.get(1).getNombre() + ":");
-        copias.get(1).displayAttributes();
+        System.out.println(copias.get(1).displayAttributes());
     }
 
     private static void NPCCharacterCopy(int nivelJuego) {      //esta funcion hace una copia del NPC con el nivel que pasemos
@@ -655,7 +652,7 @@ public class Main {
 
     private static void displayCharacterStats() {   //mostrar estadisticas de personaje
         for (Personatge character : personajes) {
-            character.displayAttributes();
+            System.out.println(character.displayAttributes());
         }
     }
 
@@ -663,7 +660,7 @@ public class Main {
         int num = 0;
         for (Personatge character : personajes) {
             if (num == 0) {
-                character.displayAttributes();
+                System.out.println(character.displayAttributes());
             }
             num ++;
         }
